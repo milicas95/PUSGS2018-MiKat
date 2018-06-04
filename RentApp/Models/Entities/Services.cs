@@ -16,8 +16,6 @@ namespace RentApp.Models.Entities
 
         public string Description { get; set; }
 
-        public string Contact { get; set; }
-
         public List<Vehicle> Vehicles { get; set; }
         public List<Branch> Branches { get; set; }
     }

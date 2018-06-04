@@ -95,6 +95,23 @@ namespace RentApp.Migrations
                 userManager.AddToRole(user.Id, "AppUser");
 
             }
+
+            Service ser = new Service() { Name = "RentACar", Email = "rent@gmail.com" };
+            TypeOfVehicle type1 = new TypeOfVehicle() { Name = "sport" };
+            TypeOfVehicle type2 = new TypeOfVehicle() { Name = "jeep" };
+            Vehicle vehicle1 = new Vehicle() { Model = "A3", Manufactor = "Audi", Year = 2011, PricePerHour = 20, Type = type1 };
+            Vehicle vehicle2 = new Vehicle() { Model = "Range Rover", Manufactor = "Toyota", Year = 2014, PricePerHour = 30, Type = type2 };
+            Vehicle vehicle3 = new Vehicle() { Model = "C3", Manufactor = "Renault", Year = 2013, PricePerHour = 10, Type = type1 };
+            Branch branch1 = new Branch() { Latitude = 46.52, Longitude = 82.65 };
+            Branch branch2 = new Branch() { Latitude = 32.12, Longitude = 95.16 };
+            ser.Branches.Add(branch1);
+            ser.Branches.Add(branch2);
+            ser.Vehicles.Add(vehicle1);
+            ser.Vehicles.Add(vehicle2);
+            ser.Vehicles.Add(vehicle3);
+
+            context.Services.AddOrUpdate(ser);
+            context.SaveChanges();
         }
     }
 }
