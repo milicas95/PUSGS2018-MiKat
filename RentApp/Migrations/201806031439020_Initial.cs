@@ -11,7 +11,7 @@ namespace RentApp.Migrations
                 "dbo.AppUsers",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),            // identity = primaran kljuc
                         FullName = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
