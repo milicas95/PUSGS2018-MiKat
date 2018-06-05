@@ -10,24 +10,31 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using RentApp.Models.Entities;
 using RentApp.Persistance;
+using RentApp.Persistance.UnitOfWork;
 
 namespace RentApp.Controllers
 {
     public class AppUsersController : ApiController
     {
-        private RADBContext db = new RADBContext();
-
-        // GET: api/AppUsers
-        public IQueryable<AppUser> GetAppUsers()
+        private readonly IUnitOfWork unitOfWork;
+        
+        public AppUsersController(IUnitOfWork unitOfWork)
         {
-            return db.AppUsers;
+            this.unitOfWork = unitOfWork;
+        }
+        
+        // GET: api/AppUsers
+        public IEnumerable<AppUser> GetAppUsers()
+        {
+            return unitOfWork.Users.GetAll();
         }
 
         // GET: api/AppUsers/5
         [ResponseType(typeof(AppUser))]
         public IHttpActionResult GetAppUser(int id)
         {
-            AppUser appUser = db.AppUsers.Find(id);
+            AppUser appUser = unitOfWork.Users.Get(id);
+
             if (appUser == null)
             {
                 return NotFound();
@@ -50,11 +57,11 @@ namespace RentApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(appUser).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                unitOfWork.Users.Update(appUser);
+                unitOfWork.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,8 +87,8 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.AppUsers.Add(appUser);
-            db.SaveChanges();
+            unitOfWork.Users.Add(appUser);
+            unitOfWork.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = appUser.Id }, appUser);
         }
@@ -90,30 +97,21 @@ namespace RentApp.Controllers
         [ResponseType(typeof(AppUser))]
         public IHttpActionResult DeleteAppUser(int id)
         {
-            AppUser appUser = db.AppUsers.Find(id);
+            AppUser appUser = unitOfWork.Users.Get(id);
             if (appUser == null)
             {
                 return NotFound();
             }
 
-            db.AppUsers.Remove(appUser);
-            db.SaveChanges();
+            unitOfWork.Users.Remove(appUser);
+            unitOfWork.Complete();
 
             return Ok(appUser);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
         private bool AppUserExists(int id)
         {
-            return db.AppUsers.Count(e => e.Id == id) > 0;
+            return unitOfWork.Users.Get(id)!=null;
         }
     }
 }
