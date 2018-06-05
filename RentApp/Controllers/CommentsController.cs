@@ -10,24 +10,30 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using RentApp.Models.Entities;
 using RentApp.Persistance;
+using RentApp.Persistance.UnitOfWork;
 
 namespace RentApp.Controllers
 {
     public class CommentsController : ApiController
     {
-        private RADBContext db = new RADBContext();
+        private readonly IUnitOfWork unitOfWork;
+
+        public CommentsController(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
 
         // GET: api/Comments
-        public IQueryable<Comment> GetComments()
+        public IEnumerable<Comment> GetComments()
         {
-            return db.Comments;
+            return unitOfWork.Comments.GetAll();
         }
 
         // GET: api/Comments/5
         [ResponseType(typeof(Comment))]
         public IHttpActionResult GetComment(int id)
         {
-            Comment comment = db.Comments.Find(id);
+            Comment comment = unitOfWork.Comments.Get(id);
             if (comment == null)
             {
                 return NotFound();
@@ -50,11 +56,10 @@ namespace RentApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(comment).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                unitOfWork.Comments.Update(comment);
+                unitOfWork.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,9 +85,8 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Comments.Add(comment);
-            db.SaveChanges();
-
+            unitOfWork.Comments.Add(comment);
+            unitOfWork.Complete();  
             return CreatedAtRoute("DefaultApi", new { id = comment.Id }, comment);
         }
 
@@ -90,30 +94,21 @@ namespace RentApp.Controllers
         [ResponseType(typeof(Comment))]
         public IHttpActionResult DeleteComment(int id)
         {
-            Comment comment = db.Comments.Find(id);
+            Comment comment = unitOfWork.Comments.Get(id);
             if (comment == null)
             {
                 return NotFound();
             }
 
-            db.Comments.Remove(comment);
-            db.SaveChanges();
+            unitOfWork.Comments.Remove(comment);
+            unitOfWork.Complete();
 
             return Ok(comment);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
         private bool CommentExists(int id)
         {
-            return db.Comments.Count(e => e.Id == id) > 0;
+            return unitOfWork.Comments.Get(id) != null;
         }
     }
 }
