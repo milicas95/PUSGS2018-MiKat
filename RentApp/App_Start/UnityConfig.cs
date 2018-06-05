@@ -61,7 +61,8 @@ namespace RentApp
             container.RegisterType<IToVRepository, ToVRepository>();
             container.RegisterType<IRentRepository, RentRepository>();
             container.RegisterType<IBranchRepository, BranchRepository>();
-            container.RegisterType<IUnitOfWork, RADBUnitOfWork>();
+            container.RegisterType<ICommentRepository, CommentRepository>();
+            container.RegisterType<IUnitOfWork, RADBUnitOfWork>();    
             container.RegisterType<ISecureDataFormat<AuthenticationTicket>, CustomJwtFormat>(new InjectionConstructor("http://localhost:51680"));
             container.RegisterType<IUserStore<RAIdentityUser>, UserStore<RAIdentityUser>>(
             new InjectionConstructor(typeof(DbContext)));

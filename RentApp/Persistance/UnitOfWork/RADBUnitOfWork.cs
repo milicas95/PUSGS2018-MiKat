@@ -30,6 +30,9 @@ namespace RentApp.Persistance.UnitOfWork
         [Dependency]
         public IVehicleRepository Vehicles { get; set; }
 
+        [Dependency]
+        public ICommentRepository Comments { get; set; }
+
         public RADBUnitOfWork(DbContext context)
         {
             _context = context;

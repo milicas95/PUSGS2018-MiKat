@@ -15,6 +15,7 @@ namespace RentApp.Persistance.UnitOfWork
         IToVRepository TypesOfVehicle { get; set; }
         IRentRepository Rents { get; set; }
         IVehicleRepository Vehicles { get; set; }
+        ICommentRepository Comments { get; set; }
 
         int Complete();
     }
