@@ -230,8 +230,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="App_Start\UnityMvcActivator.cs" />
-    <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -262,9 +260,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppUsersController.cs" />
+    <Compile Include="Controllers\BranchesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RentsController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\TypeOfVehiclesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -284,10 +287,15 @@
     <Compile Include="Migrations\201806041139225_new model.Designer.cs">
       <DependentUpon>201806041139225_new model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806051020333_comment added to model.cs" />
+    <Compile Include="Migrations\201806051020333_comment added to model.Designer.cs">
+      <DependentUpon>201806051020333_comment added to model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\Branch.cs" />
+    <Compile Include="Models\Entities\Comment.cs" />
     <Compile Include="Models\Entities\RAIdentityUser.cs" />
     <Compile Include="Models\Entities\AppUser.cs" />
     <Compile Include="Models\Entities\Rent.cs" />
@@ -295,6 +303,22 @@
     <Compile Include="Models\Entities\TypeOfVehicle.cs" />
     <Compile Include="Models\Entities\Vehicle.cs" />
     <Compile Include="Persistance\RADBContext.cs" />
+    <Compile Include="Persistance\Repository\BranchRepository.cs" />
+    <Compile Include="Persistance\Repository\IBranchRepository.cs" />
+    <Compile Include="Persistance\Repository\IRentRepository.cs" />
+    <Compile Include="Persistance\Repository\IRepository.cs" />
+    <Compile Include="Persistance\Repository\IServiceRepository.cs" />
+    <Compile Include="Persistance\Repository\IToVRepository.cs" />
+    <Compile Include="Persistance\Repository\IUserRepository.cs" />
+    <Compile Include="Persistance\Repository\IVehicleRepository.cs" />
+    <Compile Include="Persistance\Repository\RentRepository.cs" />
+    <Compile Include="Persistance\Repository\Repository.cs" />
+    <Compile Include="Persistance\Repository\ServiceRepository.cs" />
+    <Compile Include="Persistance\Repository\ToVRepository.cs" />
+    <Compile Include="Persistance\Repository\UserRepository.cs" />
+    <Compile Include="Persistance\Repository\VehicleRepository.cs" />
+    <Compile Include="Persistance\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Persistance\UnitOfWork\RADBUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Providers\CustomJwtFormat.cs" />
@@ -387,6 +411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806041139225_new model.resx">
       <DependentUpon>201806041139225_new model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806051020333_comment added to model.resx">
+      <DependentUpon>201806051020333_comment added to model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

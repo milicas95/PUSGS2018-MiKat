@@ -19,6 +19,7 @@ namespace RentApp.Persistance
 
         public RADBContext() : base("name=RADB")
         {
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public static RADBContext Create()
