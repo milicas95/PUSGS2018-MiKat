@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../Services/service.service';
 import { Service } from '../Models/service.model';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-service',
@@ -9,13 +10,28 @@ import { Service } from '../Models/service.model';
   providers: [ServiceService]
 })
 
-export class ServiceComponent implements OnInit {
+export class ServiceComponent implements OnInit 
+{
+  private serviceModel:Service;
+  private serviceList:Service[];
+  private serviceService:ServiceService;
 
-private serviceModel:Service;
-
-  constructor(private serviceService:ServiceService) { }
+  constructor(private service:ServiceService) 
+  { 
+    this.serviceService=service;
+    this.serviceList=[];
+  }
 
   ngOnInit() {
+  }
+
+  onSubmit(model:Service,form:NgForm)
+  {
+    this.serviceModel=model;
+    this.serviceList.push(model);
+    this.serviceService.postMethod(model);
+    console.log(model);
+    form.reset();
   }
 
   callGet()
@@ -23,7 +39,8 @@ private serviceModel:Service;
     this.serviceService.getMethod()
     .subscribe(
       data=> {
-        this.serviceModel=data;
+        //debugger
+        this.serviceList=data;
       },
       error=>
       {
