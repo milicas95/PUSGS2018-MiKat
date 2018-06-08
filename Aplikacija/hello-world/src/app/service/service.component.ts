@@ -29,6 +29,7 @@ export class ServiceComponent implements OnInit
   {
     this.serviceModel=model;
     this.serviceList.push(model);
+    debugger
     this.serviceService.postMethod(model);
     console.log(model);
     form.reset();

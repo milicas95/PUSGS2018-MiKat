@@ -30,10 +30,13 @@ export class ServiceService {
     .catch(this.handleError);
   }
 
-  postMethod(newMember):Observable<any>
+  postMethod(newMember):void
   {
-    return this.http.post("http://localhost:51680/api/services",newMember)
-    .map(this.parseData)
-    .catch(this.handleError);
+    debugger
+    this.http.post("http://localhost:51680/api/services",newMember)
+    .subscribe(
+      (data) => {debugger}, // Reach here if res.status >= 200 && <= 299
+      (err) => {debugger} // Reach here if fails
+    );
   }
 }
