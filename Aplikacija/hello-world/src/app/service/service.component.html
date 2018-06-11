@@ -27,9 +27,9 @@
     [class.selected]="service === selectedService"
     (click)="onSelect(service)">
     <span class="badge">{{service.Name}}</span>
-</li>
+  </li>
 </div>
 
-<div class="viewport">
+<div>
   <app-service-details [service]="selectedService"></app-service-details>
 </div>

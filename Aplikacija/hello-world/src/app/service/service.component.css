@@ -2,16 +2,6 @@
     background-color: #CFD8DC !important;
     color: white;
   }
-  .service {
-    margin: 0 0 2em 0;
-    list-style-type: none;
-    padding: 0;
-    width: 15em;
-  }
-  .service ul {
-    display: inline-block;
-    width: 100%;
-  }
   .service li {
     display: inline-block;
     cursor: pointer;
@@ -52,12 +42,6 @@
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
   }
-
-  .viewport{
-    top: 0px;
-    bottom: 0px;
-    width: 20%;
-}
 
 .cards{
   display: grid;
@@ -132,15 +116,15 @@ footer {
 }
 
 .category {
-    position: absolute;
-    top: 110px;
-    left: 0;
-    color: #fff;
-    background: #e74c3c;
-    padding: 10px 15px;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
+  position: absolute;
+  top: 110px;
+  left: 0;
+  color: #fff;
+  background: #e74c3c;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .category__01 {

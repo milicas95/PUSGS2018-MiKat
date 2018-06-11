@@ -8,14 +8,15 @@ import { ServiceComponent } from '../app/service/service.component';
 import { ServiceDetailsComponent } from '../app/service-details/service-details.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
+import { ClockComponent } from '../app/get-clock-time/get-clock-time.component';
 @NgModule({
   declarations: [
     AppComponent,
     ServiceComponent,
     ServiceDetailsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ClockComponent
   ],
   imports: [
     BrowserModule,
