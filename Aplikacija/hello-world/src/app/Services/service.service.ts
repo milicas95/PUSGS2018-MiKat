@@ -32,7 +32,7 @@ export class ServiceService {
 
   postMethod(newMember):void
   {
-    debugger
+    //debugger
     this.http.post("http://localhost:51680/api/services",newMember)
     .subscribe(
       (data) => {debugger}, // Reach here if res.status >= 200 && <= 299

@@ -15,6 +15,7 @@ export class ServiceComponent implements OnInit
   private serviceModel:Service;
   private serviceList:Service[];
   private serviceService:ServiceService;
+  private selectedService:Service;
 
   constructor(private service:ServiceService) 
   { 
@@ -23,16 +24,24 @@ export class ServiceComponent implements OnInit
   }
 
   ngOnInit() {
+    // this.callGet();
   }
 
   onSubmit(model:Service,form:NgForm)
   {
+    debugger
     this.serviceModel=model;
     this.serviceList.push(model);
-    debugger
+    //debugger
     this.serviceService.postMethod(model);
     console.log(model);
     form.reset();
+  }
+
+  onSelect(s:Service):void
+  {
+    debugger
+    this.selectedService=s;
   }
 
   callGet()

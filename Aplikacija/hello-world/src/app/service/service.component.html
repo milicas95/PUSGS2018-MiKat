@@ -1,5 +1,4 @@
-<h2>Add service</h2>
-
+<!-- ovaj deo ne treba kad se povezem sa bazom -->
 <form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
   <div>
     <label for="Name">Name</label>
@@ -23,8 +22,14 @@
 <h3>Services</h3>
 <button (click)="callGet()">Get service</button>
 
-<ul>
-  <li *ngFor="let service of serviceList">
-    {{service.Name}}
-  </li>
-</ul>
+<div class="service">
+  <li *ngFor="let service of serviceList" 
+    [class.selected]="service === selectedService"
+    (click)="onSelect(service)">
+    <span class="badge">{{service.Name}}</span>
+</li>
+</div>
+
+<div class="viewport">
+  <app-service-details [service]="selectedService"></app-service-details>
+</div>

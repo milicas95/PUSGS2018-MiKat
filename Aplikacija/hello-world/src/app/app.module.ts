@@ -4,12 +4,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
-import { ServiceComponent } from './service/service.component';
+import { ServiceComponent } from '../app/service/service.component';
+import { ServiceDetailsComponent } from '../app/service-details/service-details.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ServiceComponent
+    ServiceComponent,
+    ServiceDetailsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
