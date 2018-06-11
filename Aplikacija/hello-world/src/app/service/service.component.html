@@ -1,4 +1,4 @@
-<!-- ovaj deo ne treba kad se povezem sa bazom -->
+<!-- ovaj deo ne treba kad se povezem sa bazom 
 <form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
   <div>
     <label for="Name">Name</label>
@@ -21,9 +21,9 @@
 
 <h3>Services</h3>
 <button (click)="callGet()">Get service</button>
-
+-->
 <div class="service">
-  <li *ngFor="let service of serviceList" 
+  <li *ngFor="let service of serviceList"
     [class.selected]="service === selectedService"
     (click)="onSelect(service)">
     <span class="badge">{{service.Name}}</span>

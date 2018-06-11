@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../Services/service.service';
 import { Service } from '../Models/service.model';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-service',
@@ -24,12 +24,11 @@ export class ServiceComponent implements OnInit
   }
 
   ngOnInit() {
-    // this.callGet();
+    this.callGet();
   }
 
   onSubmit(model:Service,form:NgForm)
   {
-    debugger
     this.serviceModel=model;
     this.serviceList.push(model);
     //debugger
@@ -40,7 +39,7 @@ export class ServiceComponent implements OnInit
 
   onSelect(s:Service):void
   {
-    debugger
+    //debugger
     this.selectedService=s;
   }
 
