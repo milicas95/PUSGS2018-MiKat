@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   {
     this.loginUser=user;
     console.log(user);
-    this.loginService.getToken();
+    this.loginService.getToken(user);
     form.reset();
   }
 }
