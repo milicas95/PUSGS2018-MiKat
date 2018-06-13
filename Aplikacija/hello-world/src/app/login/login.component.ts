@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
    private loginService:LoginService
 
   constructor(private service:LoginService) 
-  { 
+  {   
     this.loginService=service;
   }
 

@@ -9,6 +9,7 @@ import { User } from '../Models/user.model';
 import { Router } from '@angular/router';
 @Injectable()
 export class LoginService {
+  public error:string;
   constructor(private http:Http,private router:Router) 
   { 
 
@@ -37,7 +38,7 @@ export class LoginService {
           let decodedJwtJsonData=window.atob(jwtData)
           let decodedJwtData=JSON.parse(decodedJwtJsonData)
           let role=decodedJwtData.role
-          debugger
+
           console.log('jwtData: ' + jwtData)
           console.log('decodedJwtJsonData: ' + decodedJwtJsonData)
           console.log('decodedJwtData: ' + decodedJwtData)
@@ -45,11 +46,14 @@ export class LoginService {
           
           localStorage.setItem('jwt',jwt)
           localStorage.setItem('role',role);
+          this.error="";
 
         },
         err =>
         {
+          debugger
           console.log("Error occured while getting token in post part");
+          this.error="Email or password is incorrect";
         }
       );
     }
@@ -57,6 +61,7 @@ export class LoginService {
     {
       // promena rute ako je korisnik/admin/manager
       this.router.navigate(['/user']);
+      this.error="";
       /*let x=this.http.get('http://localhost:51680/api/Services') as Observable<any>;
       
       x.subscribe(
