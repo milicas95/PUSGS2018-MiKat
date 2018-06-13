@@ -5,18 +5,34 @@
           <label for="Name">Name</label>
           <input type="text" name="Name" ngModel>
         </div>
+        <div *ngIf="requierdName" style="color:red">Name is required</div>
         <div>
           <label for="LastName">Last name</label>
           <input type="text" name="LastName" ngModel>
         </div>
+        <div *ngIf="requierLastName" style="color:red">Last name is required</div>
+        <div>
+          <label for="Birthday">Date of birth</label>
+          <input type="date" name="Birthday" ngModel>
+        </div>
+        <div *ngIf="requierdBirthday" style="color:red">Birthday is required</div>
         <div>
           <label for="Email">Email</label>
           <input type="text" name="Email" ngModel>
         </div>
+        <div *ngIf="requierdEmail" style="color:red">Email is required</div>
         <div>
           <label for="Password">Password</label>
           <input type="password" name="Password" ngModel>
         </div>
+        <div *ngIf="requierdPassword" style="color:red">Password is required</div>
+        <div *ngIf="passwordLength" style="color:red">At least 6 characters are needed</div>
+        <div>
+          <label for="Confirmation">Confirm password</label>
+          <input type="password" name="Confirmation" ngModel>
+        </div>
+        <div *ngIf="requierdConfirmation" style="color:red">Confirmation of password is required</div>
+        <div *ngIf="samePassword" style="color:red">Confirmation is different than password</div>
         <input type="submit">
       </form>
  <!--   </div>-->

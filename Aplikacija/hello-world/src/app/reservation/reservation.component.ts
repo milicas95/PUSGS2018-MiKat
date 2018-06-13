@@ -7,7 +7,7 @@ import { ReservationService } from '../Services/reservation.service';
 import { Vehicle } from '../Models/vehicle.model';
 import { Branch } from '../Models/branch.model';
 import { Service } from '../Models/service.model';
-import { ServiceService } from '../services/service.service';
+import { ServiceService } from '../Services/service.service';
 import { Reservation } from '../Models/reservation.model';
 import { NgForm } from '@angular/forms';
 
