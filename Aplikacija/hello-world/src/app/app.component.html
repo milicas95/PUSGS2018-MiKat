@@ -1,12 +1,18 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<h1>
-  {{title}}
-  <div class="viewportLeft"><app-service></app-service></div>
-<!--  <div>moglo bi se pozvati ovde app-service-details ali bih morala da mu posaljem ko je selektovan</div>-->
-  <div class="viewportRight">
-    <app-login></app-login>
-    <br/><br/>
-    <app-register></app-register>
-   <!--clock-component></clock-component-->
-  </div>
-</h1>
+<ul>
+    <li>
+        <a [routerLink]="['/service']">
+          <i>Services</i>
+        </a>
+      </li>
+    <li>
+      <a [routerLink]="['/login']">
+        <i>Login</i>
+      </a>
+    </li>
+    <li>
+        <a [routerLink]="['/register']">
+          <i>Register</i>
+        </a>
+      </li>
+  </ul>
+  <router-outlet></router-outlet>

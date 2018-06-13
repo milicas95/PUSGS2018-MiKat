@@ -9,11 +9,22 @@ import { ServiceDetailsComponent } from '../app/service-details/service-details.
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ClockComponent } from '../app/get-clock-time/get-clock-time.component';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
 import { HttpClientXsrfModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../app/Tokens/interceptor';
 import { CanActivateViaAuthGuard } from '../app/Tokens/auth.guard';
+import { AppUserComponent } from '../app/app-user/app-user.component';
+import { ReservationComponent } from '../app/reservation/reservation.component';
+const routes: Routes = [
+  { path: '', component: ServiceComponent },
+  { path: 'service', component: ServiceComponent },
+  { path: 'user', component: AppUserComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'reservation', component: ReservationComponent },
+  { path: 'profile', component: ReservationComponent }
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,13 +32,16 @@ import { CanActivateViaAuthGuard } from '../app/Tokens/auth.guard';
     ServiceDetailsComponent,
     LoginComponent,
     RegisterComponent,
-    ClockComponent
+    ClockComponent,
+    AppUserComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     CanActivateViaAuthGuard,

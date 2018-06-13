@@ -1,0 +1,49 @@
+<ul>
+    <li><a><i></i></a></li>
+    <li><a><i></i></a></li>
+          <li>
+              <a [routerLink]="['/reservation']">
+                <i>Make a reservation</i>
+              </a>
+            </li>
+        <li>
+          <a [routerLink]="['/profile']">
+            <i>Profile</i>
+          </a>
+        </li>
+        <li>
+            <a [routerLink]="['/service']">
+              <i>Log out</i>
+            </a>
+          </li>
+      </ul>
+  
+      <router-outlet></router-outlet>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
+    <div>
+      <label for="ReservationDate">Reservation date</label>
+      <input type="date" name="ReservationDate" ngModel>
+    </div>
+    <div>
+      <label for="SourceBranchID">Source branch</label>
+      <select name="SourceBranchID">
+        <option *ngFor="let branch of branches" [ngModel]="branch.BranchID">
+          {{branch.Address}}
+        </option>
+      </select>
+    </div>
+    <div>
+        <label for="ReturnDate">Returning date</label>
+        <input type="date" name="ReturnDate" ngModel>
+    </div>
+    <div>
+        <label for="ReturnBranchID">Returning branch</label>
+        <select name="ReturnBranchID">
+          <option *ngFor="let branch of branches" [ngModel]="branch.BranchID">
+            {{branch.Address}}
+          </option>
+        </select>
+    </div>
+    <input type="submit" value="Reserve">
+  </form>

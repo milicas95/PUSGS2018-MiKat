@@ -5,6 +5,7 @@ import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { Service } from '../Models/service.model';
 
 @Injectable()
 export class ServiceService {
@@ -39,4 +40,16 @@ export class ServiceService {
       (err) => {debugger} // Reach here if fails
     );
   }
+
+  /*search(term:string):Observable<Service>
+  {
+    if (!term.trim()) {
+      // if not search term, return empty array
+      return null;
+    }
+
+     return this.http.get<Service[]>('http://localhost:51680/?name=${term}')
+    .map(this.parseData)
+    .catch(this.handleError);
+  }*/
 }

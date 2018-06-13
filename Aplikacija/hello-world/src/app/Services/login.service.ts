@@ -6,11 +6,13 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { HttpHeaders } from '@angular/common/http/src/headers';
 import { User } from '../Models/user.model';
-
+import { Router } from '@angular/router';
 @Injectable()
 export class LoginService {
+  constructor(private http:Http,private router:Router) 
+  { 
 
-  constructor(private http:Http) { }
+  }
 
   getToken(user:User)
   {
@@ -53,7 +55,9 @@ export class LoginService {
     }
     else
     {
-      let x=this.http.get('http://localhost:51680/api/Services') as Observable<any>;
+      // promena rute ako je korisnik/admin/manager
+      this.router.navigate(['/user']);
+      /*let x=this.http.get('http://localhost:51680/api/Services') as Observable<any>;
       
       x.subscribe(
         res=>
@@ -65,7 +69,13 @@ export class LoginService {
         {
           console.log("Error occured while getting token in get part");
         }
-      );
+      )*/
     }
   }
+
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('role');
+}
 }
