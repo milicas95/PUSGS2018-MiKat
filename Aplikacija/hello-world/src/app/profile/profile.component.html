@@ -1,0 +1,47 @@
+<ul>
+  <li><a><i></i></a></li>
+  <li><a><i></i></a></li>
+        <li>
+            <a [routerLink]="['/reservation']">
+              <i>Make a reservation</i>
+            </a>
+          </li>
+      <li>
+        <a [routerLink]="['/profile']">
+          <i>Profile</i>
+        </a>
+      </li>
+      <li>
+          <a [routerLink]="['/service']">
+            <i>Log out</i>
+          </a>
+        </li>
+    </ul>
+
+    <router-outlet></router-outlet>
+
+  <div>
+    <div>Name: {{user.Name}}</div>
+    <div>Last name: {{user.LastName}}</div>
+    <div>Email: {{user.Email}}</div>
+    <div>Birthday: {{user.Birthday}}</div>
+    <div>Photo: {{user.Photo}}</div>
+  </div> 
+
+  <button (click)="toggle()">Upload photo</button>
+    <div *ngIf="clicked">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
+            <div>
+              <label for="Photo">Photo</label>
+              <input type="text" name="Photo" ngModel>
+            </div>
+            <input type="submit">
+          </form>
+     </div> 
+
+     <div>
+        <li *ngFor="let rent of rentsList">
+          <span class="badge">{{rent.ReservationID}}</span>
+        </li>
+      </div>
+      

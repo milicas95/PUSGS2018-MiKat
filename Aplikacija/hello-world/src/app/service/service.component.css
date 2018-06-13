@@ -53,10 +53,6 @@
 .card{
   border:2px solid rgb(80, 133, 160);
   border-radius: 4px;
-  padding: .5rem;
-}
-
-h2 {
   color: #000;
   margin: 2rem 0 .5rem;
   font-size: 1.25rem;

@@ -29,11 +29,11 @@ export class ReservationService {
         .catch(this.handleError);
     }
     
-    Reserve(reservation: Reservation){
+  Reserve(reservation: Reservation){
         this.http.post("http://localhost:51680/api/Reservation",reservation)
         .subscribe(
-          (data) => {debugger}, // Reach here if res.status >= 200 && <= 299
-          (err) => {debugger} // Reach here if fails
+          data => {}, // Reach here if res.status >= 200 && <= 299
+          err => {} // Reach here if fails
         );
     }
 }

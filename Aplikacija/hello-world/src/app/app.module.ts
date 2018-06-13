@@ -16,6 +16,7 @@ import { TokenInterceptor } from '../app/Tokens/interceptor';
 import { CanActivateViaAuthGuard } from '../app/Tokens/auth.guard';
 import { AppUserComponent } from '../app/app-user/app-user.component';
 import { ReservationComponent } from '../app/reservation/reservation.component';
+import { ProfileComponent } from '../app/profile/profile.component';
 const routes: Routes = [
   { path: '', component: ServiceComponent },
   { path: 'service', component: ServiceComponent },
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reservation', component: ReservationComponent },
-  { path: 'profile', component: ReservationComponent }
+  { path: 'profile', component: ProfileComponent }
 ];
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ const routes: Routes = [
     RegisterComponent,
     ClockComponent,
     AppUserComponent,
-    ReservationComponent
+    ReservationComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

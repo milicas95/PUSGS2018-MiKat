@@ -7,6 +7,6 @@ export class CanActivateViaAuthGuard implements CanActivate {
   constructor(private router:Router) {}
 
   canActivate() {
-    return localStorage.role != 'AppUser';
+    return localStorage.role == 'AppUser';
   }
 }
