@@ -51,7 +51,6 @@ export class LoginService {
         },
         err =>
         {
-          debugger
           console.log("Error occured while getting token in post part");
           this.error="Email or password is incorrect";
         }
