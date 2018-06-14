@@ -10,5 +10,6 @@ namespace RentApp.Persistance.Repository
     public interface IUserRepository : IRepository<AppUser, int>
     {
         IEnumerable<AppUser> GetAll(int pageIndex, int pageSize);
+        AppUser FirstOrDeafult(System.Linq.Expressions.Expression<Func<AppUser, bool>> predicate);
     }
 }

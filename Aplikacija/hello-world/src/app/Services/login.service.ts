@@ -46,6 +46,13 @@ export class LoginService {
           
           localStorage.setItem('jwt',jwt)
           localStorage.setItem('role',role);
+          // da mogu da izvucem token trenutnog korisnika
+          localStorage.setItem('currentUser', JSON.stringify({ token: jwt, name: user.Name }));              
+
+          debugger
+          //if(localStorage.getItem('role')=="AppUser")
+            this.router.navigate(['/user']);    
+          
           this.error="";
 
         },
@@ -57,9 +64,11 @@ export class LoginService {
       );
     }
     else
-    {
-      // promena rute ako je korisnik/admin/manager
-      this.router.navigate(['/user']);
+    { 
+      debugger
+      //if(localStorage.getItem('role')=="AppUser")
+        this.router.navigate(['/service']); 
+
       this.error="";
       /*let x=this.http.get('http://localhost:51680/api/Services') as Observable<any>;
       
@@ -74,12 +83,15 @@ export class LoginService {
           console.log("Error occured while getting token in get part");
         }
       )*/
-    }
+  }
   }
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('role');
-}
+    // localStorage.removeItem('jwt');
+    // localStorage.removeItem('role');
+    // localStorage.removeItem('currentUser');
+    localStorage.clear();
+    this.router.navigate(['/service']);
+  }
 }

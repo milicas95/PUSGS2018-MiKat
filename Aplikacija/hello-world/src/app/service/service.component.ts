@@ -24,6 +24,7 @@ export class ServiceComponent implements OnInit
   }
 
   ngOnInit() {
+    //debugger
     this.callGet();
   }
 

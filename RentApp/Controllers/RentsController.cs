@@ -11,6 +11,8 @@ using System.Web.Http.Description;
 using RentApp.Models.Entities;
 using RentApp.Persistance;
 using RentApp.Persistance.UnitOfWork;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 
 namespace RentApp.Controllers
 {
@@ -21,6 +23,20 @@ namespace RentApp.Controllers
         public RentsController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+        }
+
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
         }
 
         // GET: api/Rents
@@ -76,19 +92,30 @@ namespace RentApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [Authorize(Roles = "AppUser")]
         // POST: api/Rents
         [ResponseType(typeof(Rent))]
         public IHttpActionResult PostRent(Rent rent)
         {
-            if (!ModelState.IsValid)
+            bool isAppUser = UserManager.IsInRole(User.Identity.Name, "AppUser");
+            var user = unitOfWork.Users.FirstOrDeafult(u => u.Email == User.Identity.Name);
+
+            if (isAppUser && user != null)
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                //rent.AppUser=user;
+
+                unitOfWork.Rents.Add(rent);
+                unitOfWork.Complete();
+
+                return CreatedAtRoute("DefaultApi", new { id = rent.Id }, rent);
             }
 
-            unitOfWork.Rents.Add(rent);
-            unitOfWork.Complete();
-
-            return CreatedAtRoute("DefaultApi", new { id = rent.Id }, rent);
+            return Unauthorized();
         }
 
         // DELETE: api/Rents/5

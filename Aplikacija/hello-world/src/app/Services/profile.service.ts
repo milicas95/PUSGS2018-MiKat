@@ -23,10 +23,17 @@ export class ProfileService {
       return Observable.throw(errorMessage);
     }
 
-    // pitati Acu kako da izvucem token zbog prikaza informacija o trenutnom korisniku
+    // prosiriti backend da na osnovu emaila nadje ostale informacije u korisniku
+    getUser():Observable<User>
+    {
+      return this.http.get("http://localhost:51680/api/Account/UserInfo")
+      .map(this.parseData)
+      .catch(this.handleError);
+    }
+
     getRents(): Observable<Reservation[]>
     {
-        return this.http.get("http://localhost:51680/api/")
+        return this.http.get("http://localhost:51680/api/Rents")
         .map(this.parseData)
         .catch(this.handleError);
     }

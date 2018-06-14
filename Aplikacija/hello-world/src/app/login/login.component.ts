@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../Services/login.service';
 import { User } from '../Models/user.model';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Route } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(user:User,form:NgForm)
   {
+    debugger
     this.loginUser=user;
     console.log(user);
     this.loginService.getToken(user);

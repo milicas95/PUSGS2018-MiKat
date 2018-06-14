@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CanActivateViaAuthGuard } from '../Tokens/auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../Tokens/interceptor';
@@ -22,10 +22,14 @@ import { Reservation } from 'src/app/Models/reservation.model';
   ProfileService]
 })
 export class ProfileComponent implements OnInit {
-  
+  debugger
   private url:string;
+  private clicked=false;
   private profileService:ProfileService;
   private rentsList:Reservation[];
+  private currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  private token = this.currentUser.token; // your token
+  private user:string;
 
   constructor(private service:ProfileService) 
   { 
@@ -35,6 +39,24 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.getRents();
+    this.getUser();
+  }
+
+  toggle():void
+  {
+    this.clicked=!this.clicked;
+  }
+
+  getUser()
+  {
+    this.user=this.currentUser.name;
+    console.log(this.currentUser);
+    //debugger
+    // this.profileService.getUser()
+    // .subscribe(
+    //   data=>{ this.user=this.currentUser.name;  },
+    //   error=>{}
+    // )
   }
   
   getRents(){

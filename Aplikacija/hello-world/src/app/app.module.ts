@@ -17,6 +17,7 @@ import { CanActivateViaAuthGuard } from '../app/Tokens/auth.guard';
 import { AppUserComponent } from '../app/app-user/app-user.component';
 import { ReservationComponent } from '../app/reservation/reservation.component';
 import { ProfileComponent } from '../app/profile/profile.component';
+import { LogoutComponent } from './logout/logout.component';
 const routes: Routes = [
   { path: '', component: ServiceComponent },
   { path: 'service', component: ServiceComponent },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reservation', component: ReservationComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent },
+  { path: 'logout', component: LogoutComponent }
 ];
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ const routes: Routes = [
     ClockComponent,
     AppUserComponent,
     ReservationComponent,
-    ProfileComponent
+    ProfileComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
