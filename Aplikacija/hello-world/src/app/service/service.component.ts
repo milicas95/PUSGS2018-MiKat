@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../Services/service.service';
 import { Service } from '../Models/service.model';
 import { NgForm } from '@angular/forms';
+import { Vehicle } from 'src/app/Models/vehicle.model';
 
 @Component({
   selector: 'app-service',
@@ -16,11 +17,13 @@ export class ServiceComponent implements OnInit
   private serviceList:Service[];
   private serviceService:ServiceService;
   private selectedService:Service;
+  private vehicles:Vehicle[];
 
   constructor(private service:ServiceService) 
   { 
     this.serviceService=service;
     this.serviceList=[];
+    this.vehicles=[];
   }
 
   ngOnInit() {
@@ -41,7 +44,18 @@ export class ServiceComponent implements OnInit
   onSelect(s:Service):void
   {
     //debugger
-    this.selectedService=s;
+    this.vehicles=[];
+    this.serviceService.getVehiclesMethod(s.Id)
+    .subscribe(
+      data=>{
+      this.selectedService=data;
+      this.vehicles=this.selectedService.Vehicles;
+      },
+      error=>
+      {
+  
+      }
+    )
   }
 
   callGet()

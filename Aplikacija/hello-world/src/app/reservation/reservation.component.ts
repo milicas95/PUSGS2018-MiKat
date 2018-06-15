@@ -55,7 +55,7 @@ export class ReservationComponent implements OnInit {
     .subscribe(
       data => {
         this.vehicle = data;
-         this.branches = this.vehicle.Service.branches;
+         this.branches = this.vehicle.Service.Branches;
       }
     );
   }

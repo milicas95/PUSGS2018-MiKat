@@ -33,3 +33,17 @@
 <div>
   <app-service-details [service]="selectedService"></app-service-details>
 </div>
+
+<!-- <div>
+    <app-vehicle [selectedService]="selectedService"></app-vehicle>
+</div> -->
+
+<div>
+    <div *ngIf="selectedService">
+      <li *ngFor="let vehicle of vehicles">
+        <div>{{vehicle.Model}}</div>
+        <div>{{vehicle.Manufactor}}</div>
+        <div>{{vehicle.Year}}</div>
+      </li>
+    </div>
+  </div>

@@ -29,6 +29,7 @@ export class ServiceService {
     return this.http.get('http://localhost:51680/api/services')
     .map(this.parseData)
     .catch(this.handleError);
+
   }
 
   postMethod(newMember):void
@@ -39,6 +40,13 @@ export class ServiceService {
       (data) => {debugger}, // Reach here if res.status >= 200 && <= 299
       (err) => {debugger} // Reach here if fails
     );
+  }
+
+  getVehiclesMethod(id:number):Observable<any>
+  {
+    return this.http.get('http://localhost:51680/api/services/' + id)
+    .map(this.parseData)
+    .catch(this.handleError);
   }
 
   /*search(term:string):Observable<Service>

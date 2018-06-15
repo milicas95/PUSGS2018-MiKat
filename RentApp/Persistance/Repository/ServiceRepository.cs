@@ -9,6 +9,7 @@ namespace RentApp.Persistance.Repository
 {
     public class ServiceRepository : Repository<Service, int>, IServiceRepository
     {
+        protected RADBContext Context { get { return context as RADBContext; } }
         public ServiceRepository(DbContext context) : base(context)
         {
 
@@ -19,6 +20,11 @@ namespace RentApp.Persistance.Repository
         public IEnumerable<Service> GetAll(int pageIndex, int pageSize)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Vehicle> GetVehicles(int serviceId)
+        {
+            return Context.Vehicles.Where(x => x.Service.Id == serviceId).ToList();
         }
     }
 }

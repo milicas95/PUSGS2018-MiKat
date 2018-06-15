@@ -3,12 +3,12 @@ import { Branch } from '../Models/branch.model';
 
 export class Service
 {
-    id:number;
-    name:string;
-    logo:string;
-    email:string;
-    description:string;
-    activated:boolean;
-    vehicles:Vehicle[];
-    branches:Branch[];
+    Id:number;
+    Name:string;
+    Logo:string;
+    Email:string;
+    Description:string;
+    Activated:boolean;
+    Vehicles:Vehicle[];
+    Branches:Branch[];
 }

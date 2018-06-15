@@ -18,9 +18,10 @@ import { AppUserComponent } from '../app/app-user/app-user.component';
 import { ReservationComponent } from '../app/reservation/reservation.component';
 import { ProfileComponent } from '../app/profile/profile.component';
 import { LogoutComponent } from './logout/logout.component';
+
 const routes: Routes = [
   { path: '', component: ServiceComponent },
-  { path: 'service', component: ServiceComponent },
+  { path: 'service', component: ServiceComponent }, 
   { path: 'user', component: AppUserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -39,7 +40,7 @@ const routes: Routes = [
     AppUserComponent,
     ReservationComponent,
     ProfileComponent,
-    LogoutComponent
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

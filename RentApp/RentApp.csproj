@@ -308,6 +308,10 @@
     <Compile Include="Migrations\201806051020333_comment added to model.Designer.cs">
       <DependentUpon>201806051020333_comment added to model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806151120326_added vehicle.cs" />
+    <Compile Include="Migrations\201806151120326_added vehicle.Designer.cs">
+      <DependentUpon>201806151120326_added vehicle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -406,7 +410,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
+    <Folder Include="Content\Images\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -436,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806051020333_comment added to model.resx">
       <DependentUpon>201806051020333_comment added to model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806151120326_added vehicle.resx">
+      <DependentUpon>201806151120326_added vehicle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

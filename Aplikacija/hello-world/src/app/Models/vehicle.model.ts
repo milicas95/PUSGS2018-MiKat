@@ -3,7 +3,7 @@ import { Service } from "./service.model";
 export class Vehicle {
     Id: string;
     Model: string;
-    Manufacturer: string;
+    Manufactor: string;
     Year: string;
     Photo: string;
     Description: string;
