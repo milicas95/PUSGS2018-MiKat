@@ -9,6 +9,7 @@ namespace RentApp.Persistance.Repository
 {
     public class BranchRepository : Repository<Branch, int>, IBranchRepository
     {
+        protected RADBContext Context { get { return context as RADBContext; } }
         public BranchRepository(DbContext context) : base(context)
         {
 
@@ -17,6 +18,11 @@ namespace RentApp.Persistance.Repository
         public IEnumerable<Branch> GetAll(int pageIndex, int pageSize)
         {
             throw new NotImplementedException();
+        }
+
+        public Service GetService(int serviceId)
+        {
+            return Context.Services.Find(serviceId);
         }
     }
 }

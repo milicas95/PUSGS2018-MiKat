@@ -42,6 +42,12 @@ namespace RentApp.Controllers
             return Ok(vehicle);
         }
 
+        // GET: api/Vehicles/GetByPrice/5
+        [Route("api/Vehicles/GetByPrice/{price}")]
+        public IEnumerable<Vehicle> GetByPrice(decimal price)
+        {
+            return unitOfWork.Vehicles.GetByPrice(price).ToList();
+        }
         // PUT: api/Vehicles/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutVehicle(int id, Vehicle vehicle)

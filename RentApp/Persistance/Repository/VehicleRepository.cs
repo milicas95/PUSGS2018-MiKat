@@ -27,5 +27,10 @@ namespace RentApp.Persistance.Repository
         {
             return Context.Services.Find(serviceId);
         }
+
+        public IEnumerable<Vehicle> GetByPrice(decimal price)
+        {
+            return Context.Vehicles.Where(x => x.PricePerHour <= price);
+        }
     }
 }

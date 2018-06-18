@@ -85,6 +85,7 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            branch.Service = unitOfWork.Branches.GetService(branch.Service.Id);
             unitOfWork.Branches.Add(branch);
             unitOfWork.Complete();
 
