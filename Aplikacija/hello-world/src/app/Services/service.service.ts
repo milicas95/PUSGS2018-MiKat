@@ -6,6 +6,7 @@ import { Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Service } from '../Models/service.model';
+import { debug } from 'util';
 
 @Injectable()
 export class ServiceService {
@@ -35,11 +36,10 @@ export class ServiceService {
 
   postMethod(newMember):void
   {
-    //debugger
     this.http.post("http://localhost:51680/api/services",newMember)
     .subscribe(
-      (data) => {debugger}, // Reach here if res.status >= 200 && <= 299
-      (err) => {debugger} // Reach here if fails
+      data => {}, // Reach here if res.status >= 200 && <= 299
+      err => {} // Reach here if fails
     );
   }
 
@@ -52,11 +52,19 @@ export class ServiceService {
 
   postVehiclesMethod(newMember):void
   {
-    debugger
     this.http.post("http://localhost:51680/api/Vehicles",newMember)
     .subscribe(
-      (data) => {debugger}, // Reach here if res.status >= 200 && <= 299
-      (err) => {debugger} // Reach here if fails
+      data => {}, // Reach here if res.status >= 200 && <= 299
+      err => {} // Reach here if fails
+    );
+  }
+
+  postBranchesMethod(newMember):void
+  {
+    this.http.post("http://localhost:51680/api/Branches",newMember)
+    .subscribe(
+      (data)=>{debugger},
+      (err)=>{debugger}
     );
   }
 }

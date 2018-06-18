@@ -47,9 +47,8 @@ export class LoginService {
           localStorage.setItem('jwt',jwt)
           localStorage.setItem('role',role);
           // da mogu da izvucem token trenutnog korisnika
-          localStorage.setItem('currentUser', JSON.stringify({ token: jwt, name: user.Name }));              
 
-          debugger
+          //debugger
           //if(localStorage.getItem('role')=="AppUser")
             this.router.navigate(['/user']);    
           
@@ -88,10 +87,8 @@ export class LoginService {
 
   logout() {
     // remove user from local storage to log user out
-    // localStorage.removeItem('jwt');
-    // localStorage.removeItem('role');
-    // localStorage.removeItem('currentUser');
-    localStorage.clear();
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('role');
     this.router.navigate(['/service']);
   }
 }

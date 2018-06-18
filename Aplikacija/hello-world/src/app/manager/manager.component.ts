@@ -8,6 +8,7 @@ import { ManagerService } from '../Services/manager.service';
 import { Vehicle } from '../Models/vehicle.model';
 import { ServiceDetailsComponent } from '../service-details/service-details.component';
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 const URL='http://localhost:51680/api/PostUserImage';
 @Component({
   selector: 'app-manager',
@@ -19,8 +20,11 @@ export class ManagerComponent implements OnInit {
   private selectedService:Service;
   private vehicles:Vehicle[];
   private serviceList:Service[];
+  isVisible = true;
+  isVisible1 = true;
   public uploader:FileUploader=new FileUploader({url:URL,itemAlias:'photo'});
   url:string[];
+
   constructor(private service:ServiceService,private router:Router,private activated:ActivatedRoute) 
   { 
     this.uploader.onAfterAddingFile=(file)=>{file.withCredentials=false};
@@ -34,6 +38,14 @@ export class ManagerComponent implements OnInit {
   ngOnInit() {
     this.serviceList=[];
     this.callGet();
+  }
+
+  toggle():void {
+    this.isVisible = !this.isVisible;
+  }
+
+  toggle1():void {
+    this.isVisible1 = !this.isVisible1;
   }
 
   onSelect(s:Service):void
@@ -76,9 +88,17 @@ export class ManagerComponent implements OnInit {
 
   addVehicles(model:Vehicle,form:NgForm)
   {
-    debugger
     model.Service=this.selectedService;
     this.service.postVehiclesMethod(model);
+    console.log(model);
+    form.reset();
+  }
+
+  addBranches(model:Branch,form:NgForm)
+  {
+    debugger
+    model.Service=this.selectedService;
+    this.service.postBranchesMethod(model);
     console.log(model);
     form.reset();
   }
