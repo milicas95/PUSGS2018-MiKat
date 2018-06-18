@@ -39,6 +39,7 @@ namespace RentApp.Controllers
                 return NotFound();
             }
 
+            typeOfVehicle.Vehicles = unitOfWork.TypesOfVehicle.GetVehicles(id).ToList();
             return Ok(typeOfVehicle);
         }
 

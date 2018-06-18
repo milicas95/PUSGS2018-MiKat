@@ -60,6 +60,10 @@ namespace RentApp.Models
         [DataType(DataType.Date)]
         [Display(Name ="Birthday")]
         public DateTime Birthday { get; set; }
+
+        [Required]
+        [Display(Name = "Role")]
+        public bool Role { get; set; }
     }
 
     public class RegisterExternalBindingModel

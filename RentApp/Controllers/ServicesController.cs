@@ -29,6 +29,12 @@ namespace RentApp.Controllers
             return unitOfWork.Services.GetAll();
         }
 
+        [Route("api/Services/GetActive")]
+        public IEnumerable<Service> GetActiveServices()
+        {
+            return unitOfWork.Services.GetActiveServices();
+        }
+
         // GET: api/Services/5
         [ResponseType(typeof(Service))]
         public IHttpActionResult GetService(int id)
@@ -40,6 +46,7 @@ namespace RentApp.Controllers
             }
 
             service.Vehicles = unitOfWork.Services.GetVehicles(id).ToList();
+            service.Branches = unitOfWork.Services.GetBranches(id).ToList();
             return Ok(service);
         }
 
@@ -102,6 +109,9 @@ namespace RentApp.Controllers
                 return NotFound();
             }
 
+            unitOfWork.Services.DeleteVehicles(id);
+            unitOfWork.Services.DeleteBranches(id);
+            unitOfWork.Services.DeleteComments(id);
             unitOfWork.Services.Remove(service);
             unitOfWork.Complete();
 

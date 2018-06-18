@@ -17,6 +17,7 @@ namespace RentApp.Models.Entities
         public List<string> Images { get; set; }
         public virtual TypeOfVehicle Type { get; set; }
         public virtual Service Service { get; set; }
+        public virtual List<Rent> Rents { get; set; }
         
     }
 }

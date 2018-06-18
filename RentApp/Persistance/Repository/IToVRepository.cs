@@ -10,5 +10,6 @@ namespace RentApp.Persistance.Repository
     public interface IToVRepository : IRepository<TypeOfVehicle, int>
     {
         IEnumerable<TypeOfVehicle> GetAll(int pageIndex, int pageSize);
+        IEnumerable<Vehicle> GetVehicles(int tovId);
     }
 }

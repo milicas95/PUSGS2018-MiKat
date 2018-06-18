@@ -155,6 +155,7 @@
     </Reference>
     <Reference Include="Unity.Mvc, Version=5.0.13.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.Mvc.5.0.13\lib\net46\Unity.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
@@ -308,9 +309,21 @@
     <Compile Include="Migrations\201806051020333_comment added to model.Designer.cs">
       <DependentUpon>201806051020333_comment added to model.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806151120326_added vehicle.cs" />
-    <Compile Include="Migrations\201806151120326_added vehicle.Designer.cs">
-      <DependentUpon>201806151120326_added vehicle.cs</DependentUpon>
+    <Compile Include="Migrations\201806170941041_new branch model.cs" />
+    <Compile Include="Migrations\201806170941041_new branch model.Designer.cs">
+      <DependentUpon>201806170941041_new branch model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806171345529_updated rent branch comment.cs" />
+    <Compile Include="Migrations\201806171345529_updated rent branch comment.Designer.cs">
+      <DependentUpon>201806171345529_updated rent branch comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806171430540_updated model.cs" />
+    <Compile Include="Migrations\201806171430540_updated model.Designer.cs">
+      <DependentUpon>201806171430540_updated model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806180753033_updated user.cs" />
+    <Compile Include="Migrations\201806180753033_updated user.Designer.cs">
+      <DependentUpon>201806180753033_updated user.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -393,7 +406,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -441,8 +456,17 @@
     <EmbeddedResource Include="Migrations\201806051020333_comment added to model.resx">
       <DependentUpon>201806051020333_comment added to model.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806151120326_added vehicle.resx">
-      <DependentUpon>201806151120326_added vehicle.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806170941041_new branch model.resx">
+      <DependentUpon>201806170941041_new branch model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806171345529_updated rent branch comment.resx">
+      <DependentUpon>201806171345529_updated rent branch comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806171430540_updated model.resx">
+      <DependentUpon>201806171430540_updated model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806180753033_updated user.resx">
+      <DependentUpon>201806180753033_updated user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

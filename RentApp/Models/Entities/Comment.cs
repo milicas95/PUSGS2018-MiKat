@@ -11,5 +11,6 @@ namespace RentApp.Models.Entities
         public string Description { get; set; }
         public int Grade { get; set; }
         public virtual Service Service { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

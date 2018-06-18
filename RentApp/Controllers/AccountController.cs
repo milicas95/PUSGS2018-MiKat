@@ -322,7 +322,14 @@ namespace RentApp.Controllers
             var user = new RAIdentityUser() { Id = model.Email, UserName = model.Email, Email = model.Email, AppUser = appUser, PasswordHash = RAIdentityUser.HashPassword(model.Password) };
 
             UserManager.Create(user);
-            UserManager.AddToRole(user.Id, "AppUser");
+            if (model.Role)
+            {
+                UserManager.AddToRole(user.Id, "Manager");
+            }
+            else
+            {
+                UserManager.AddToRole(user.Id, "AppUser");
+            }
 
             return Ok();
         }

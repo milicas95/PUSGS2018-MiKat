@@ -26,5 +26,47 @@ namespace RentApp.Persistance.Repository
         {
             return Context.Vehicles.Where(x => x.Service.Id == serviceId).ToList();
         }
+
+        public IEnumerable<Branch> GetBranches(int serviceId)
+        {
+            return Context.Branches.Where(x => x.Service.Id == serviceId).ToList();
+        }
+
+        public void DeleteVehicles(int serviceId)
+        {
+            List<Vehicle> vehicles = Context.Vehicles.Where(x => x.Service.Id == serviceId).ToList();
+            foreach(var v in vehicles)
+            {
+                Context.Vehicles.Remove(v);
+            }
+        }
+
+        public void DeleteBranches(int serviceId)
+        {
+            List<Branch> branches = Context.Branches.Where(x => x.Service.Id == serviceId).ToList();
+            foreach(var b in branches)
+            {
+                Context.Branches.Remove(b);
+            }
+        }
+
+        public IEnumerable<Comment> GetComments(int serviceId)
+        {
+            return Context.Comments.Where(x => x.Service.Id == serviceId).ToList();
+        }
+
+        public void DeleteComments(int serviceId)
+        {
+            List<Comment> comments = Context.Comments.Where(x => x.Service.Id == serviceId).ToList();
+            foreach (var c in comments)
+            {
+                Context.Comments.Remove(c);
+            }
+        }
+
+        public IEnumerable<Service> GetActiveServices()
+        {
+            return Context.Services.Where(x => x.Activated == true).ToList();
+        }
     }
 }

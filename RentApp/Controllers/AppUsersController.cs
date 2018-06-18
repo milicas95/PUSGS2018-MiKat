@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using RentApp.Models.Entities;
 using RentApp.Persistance;
 using RentApp.Persistance.UnitOfWork;
+using RentApp.Persistance.Repository;
 
 namespace RentApp.Controllers
 {
@@ -23,6 +24,7 @@ namespace RentApp.Controllers
             this.unitOfWork = unitOfWork;
         }
         
+        [Authorize(Roles = "Admin")]
         // GET: api/AppUsers
         public IEnumerable<AppUser> GetAppUsers()
         {
@@ -40,6 +42,7 @@ namespace RentApp.Controllers
                 return NotFound();
             }
 
+            appUser.Rents = unitOfWork.Users.GetRents(id).ToList();
             return Ok(appUser);
         }
 
@@ -103,6 +106,7 @@ namespace RentApp.Controllers
                 return NotFound();
             }
 
+            unitOfWork.Users.DeleteRents(id);
             unitOfWork.Users.Remove(appUser);
             unitOfWork.Complete();
 

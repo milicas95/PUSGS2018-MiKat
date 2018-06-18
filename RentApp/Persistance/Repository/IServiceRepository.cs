@@ -12,5 +12,11 @@ namespace RentApp.Persistance.Repository
         IEnumerable<Service> GetAll(int pageIndex, int pageSize);
 
         IEnumerable<Vehicle> GetVehicles(int serviceId);
+        IEnumerable<Branch> GetBranches(int serviceId);
+        IEnumerable<Comment> GetComments(int serviceId);
+        void DeleteVehicles(int serviceId);
+        void DeleteBranches(int serviceId);
+        void DeleteComments(int serviceId);
+        IEnumerable<Service> GetActiveServices();
     }
 }

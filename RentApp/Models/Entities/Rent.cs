@@ -10,7 +10,9 @@ namespace RentApp.Models.Entities
         public int Id { get; set; }
         public DateTime? Start { get; set; } 
         public DateTime? End { get; set; }
+        public bool Used { get; set; } 
         public virtual Branch Branch { get; set; }
         public virtual Vehicle Vehicle { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }
