@@ -85,6 +85,7 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            vehicle.Service = unitOfWork.Vehicles.GetService(vehicle.Service.Id);
             unitOfWork.Vehicles.Add(vehicle);
             unitOfWork.Complete();
 

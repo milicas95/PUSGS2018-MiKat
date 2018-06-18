@@ -11,5 +11,6 @@ namespace RentApp.Persistance.Repository
     public interface IVehicleRepository : IRepository<Vehicle, int>
     {
         IEnumerable<Vehicle> GetVehiclesForService(int serviceId);
+        Service GetService(int serviceId);
     }
 }

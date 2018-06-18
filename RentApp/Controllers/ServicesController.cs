@@ -47,6 +47,7 @@ namespace RentApp.Controllers
 
             service.Vehicles = unitOfWork.Services.GetVehicles(id).ToList();
             service.Branches = unitOfWork.Services.GetBranches(id).ToList();
+            service.Comments = unitOfWork.Services.GetComments(id).ToList();
             return Ok(service);
         }
 

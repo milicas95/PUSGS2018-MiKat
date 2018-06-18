@@ -29,8 +29,9 @@ export class ServiceService {
     return this.http.get('http://localhost:51680/api/services')
     .map(this.parseData)
     .catch(this.handleError);
-
   }
+
+
 
   postMethod(newMember):void
   {
@@ -49,15 +50,13 @@ export class ServiceService {
     .catch(this.handleError);
   }
 
-  /*search(term:string):Observable<Service>
+  postVehiclesMethod(newMember):void
   {
-    if (!term.trim()) {
-      // if not search term, return empty array
-      return null;
-    }
-
-     return this.http.get<Service[]>('http://localhost:51680/?name=${term}')
-    .map(this.parseData)
-    .catch(this.handleError);
-  }*/
+    debugger
+    this.http.post("http://localhost:51680/api/Vehicles",newMember)
+    .subscribe(
+      (data) => {debugger}, // Reach here if res.status >= 200 && <= 299
+      (err) => {debugger} // Reach here if fails
+    );
+  }
 }

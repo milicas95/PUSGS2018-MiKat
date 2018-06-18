@@ -18,6 +18,7 @@ import { AppUserComponent } from '../app/app-user/app-user.component';
 import { ReservationComponent } from '../app/reservation/reservation.component';
 import { ProfileComponent } from '../app/profile/profile.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ManagerComponent } from 'src/app/manager/manager.component';
 
 const routes: Routes = [
   { path: '', component: ServiceComponent },
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'reservation', component: ReservationComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'logout', component: LogoutComponent }
+  { path: 'logout', component: LogoutComponent },
+  { path: 'manager', component: ManagerComponent }
 ];
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ const routes: Routes = [
     ReservationComponent,
     ProfileComponent,
     LogoutComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,

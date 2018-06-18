@@ -1,34 +1,25 @@
-<!-- ovaj deo ne treba kad se povezem sa bazom
-<form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
-  <div>
-    <label for="Name">Name</label>
-    <input type="text" name="Name" ngModel>
-  </div>
-  <div>
-    <label for="Logo">Logo</label>
-    <input type="text" name="Logo" ngModel>
-  </div>
-  <div>
-    <label for="Email">Email</label>
-    <input type="text" name="Email" ngModel>
-  </div>
-  <div>
-    <label for="Description">Description</label>
-    <input type="text" name="Description" ngModel>
-  </div>
-  <input type="submit">
-</form>
--->
 <h3>Services</h3>
 <!--button (click)="callGet()">Get service</button-->
 
-<div class="service">
+<!-- <div class="cards">
   <li *ngFor="let service of serviceList"
     [class.selected]="service === selectedService"
     (click)="onSelect(service)">
     <span class="badge">{{service.Name}}</span>
   </li>
+</div> -->
+
+<div class="cards" *ngFor="let service of serviceList" [class.selected]="service === selectedService"
+  (click)="onSelect(service)">
+      <div class="card" >
+          <img class="card-img-top" src="{{service.Logo}}" alt="Card image cap">
+          <div class="card-block p-3">
+              <h4 class="card-content" name="Name">{{service.Name}}</h4>
+              <p class="card-content" name="Description">{{service.Description}}</p>
+          </div>
+      </div>
 </div>
+
 
 <div>
   <app-service-details [service]="selectedService"></app-service-details>

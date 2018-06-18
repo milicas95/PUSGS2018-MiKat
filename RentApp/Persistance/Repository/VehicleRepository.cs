@@ -22,5 +22,10 @@ namespace RentApp.Persistance.Repository
         {
             return Context.Vehicles.Where(x => x.Service.Id == serviceId).ToList();
         }
+
+        public Service GetService(int serviceId)
+        {
+            return Context.Services.Find(serviceId);
+        }
     }
 }

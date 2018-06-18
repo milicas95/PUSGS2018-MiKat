@@ -1,3 +1,5 @@
+.bg-dark{ background-color: #343a40!important}
+
 .selected {
     background-color: #CFD8DC !important;
     color: white;
@@ -44,7 +46,8 @@
   }
 
 .cards{
-  display: grid;
+  display: inline-block;
+  margin: .5em;
   grid-template-columns: repeat(auto-fill,250px);
   grid-auto-rows:auto;
   grid-gap:1rem;

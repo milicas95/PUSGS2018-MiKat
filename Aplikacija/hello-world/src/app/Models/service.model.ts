@@ -11,4 +11,5 @@ export class Service
     Activated:boolean;
     Vehicles:Vehicle[];
     Branches:Branch[];
+    // dodati listu komentara
 }
