@@ -97,25 +97,30 @@ namespace RentApp.Controllers
         [ResponseType(typeof(Rent))]
         public IHttpActionResult PostRent(Rent rent)
         {
-            //bool isAppUser = UserManager.IsInRole(User.Identity.Name, "AppUser");
-            //var user = unitOfWork.Users.FirstOrDeafult(u => u.Email == User.Identity.Name);
+            bool isAppUser = UserManager.IsInRole(User.Identity.Name, "AppUser");
+            var user = unitOfWork.Users.FirstOrDeafult(u => u.Email == User.Identity.Name);
 
-            //if (isAppUser && user != null)
-            //{
+            if (isAppUser && user != null)
+            {
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
 
-                //rent.AppUser=user;
+                rent.User=user;
+
+                Vehicle vehicle = unitOfWork.Vehicles.GetVehicle(rent.Vehicle.Id);
+                vehicle.Unavailable = true;
+
+                unitOfWork.Vehicles.Update(vehicle);
 
                 unitOfWork.Rents.Add(rent);
                 unitOfWork.Complete();
 
                 return CreatedAtRoute("DefaultApi", new { id = rent.Id }, rent);
-            //}
+            }
 
-            //return Unauthorized();
+            return Unauthorized();
         }
 
         // DELETE: api/Rents/5

@@ -32,5 +32,10 @@ namespace RentApp.Persistance.Repository
         {
             return Context.Vehicles.Where(x => x.PricePerHour <= price);
         }
+
+        public Vehicle GetVehicle(int id)
+        {
+            return Context.Vehicles.Find(id);
+        }
     }
 }
