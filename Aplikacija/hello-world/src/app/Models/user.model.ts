@@ -3,8 +3,10 @@ import { Reservation } from "src/app/Models/reservation.model";
 
 export class User
 {
+    Id:number;
     Name:string;
     LastName:string;
+    FullName:string;
     Email:string;
     Password:string;
     Birthday:Data;

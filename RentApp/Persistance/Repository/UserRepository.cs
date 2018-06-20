@@ -42,5 +42,9 @@ namespace RentApp.Persistance.Repository
                 }
             }
         }
+        public AppUser GetUserInfo(string email)
+        {
+            return Context.AppUsers.Where(u => u.Email == email).FirstOrDefault();
+        }
     }
 }

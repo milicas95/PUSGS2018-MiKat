@@ -12,23 +12,39 @@
         </a>
       </li>
       <li>
-          <a [routerLink]="['/service']">
+          <a [routerLink]="['/logout']">
             <i>Log out</i>
           </a>
         </li>
     </ul>
 
     <router-outlet></router-outlet>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
+        <div>
+          <label for="FullName">Full name:</label>
+          <input type="text" name="FullName" [value]="user.FullName" ngModel>
+        </div>
+        <div>
+          <label for="Email">Email:</label>
+          <input type="text" name="Email" [value]="user.Email" ngModel>
+        </div>
+        <div>
+            <label for="Birthday">Date of birth</label>
+            <input type="date" name="Birthday" [value]="user.Birthday | date : 'yyyy-MM-dd'" ngModel>
+        </div>
+        <input type="submit" value="Change profile">
+      </form>
 
-  <div>
-    <div>Name: <!--{{user.Name}}--></div>
-    <div>Last name: <!--{{user.LastName}}--> </div>
-    <div>Email: {{user}}</div>
-    <div>Birthday: <!--{{user.Birthday}}--></div>
-    <div>Photo: <!-- {{user.Photo}} --></div>
-  </div> 
+  <!-- <div>
+    <div>Full name: {{user.FullName}} </div>
+    <div>Email: {{user.Email}}</div>
+    <div>
+        <label for="Birthday">Date of birth</label>
+        <input type="date" name="Birthday" [value]="user.Birthday | date : 'yyyy-MM-dd' ">
+    </div>
+  </div>  -->
 
-  <button (click)="toggle()">Upload photo</button>
+  <!-- <button (click)="toggle()">Upload photo</button>
     <div *ngIf="clicked">
         <form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
             <div>
@@ -37,7 +53,7 @@
             </div>
             <input type="submit">
           </form>
-     </div> 
+     </div>  -->
 
      <div>
         <li *ngFor="let rent of rentsList">

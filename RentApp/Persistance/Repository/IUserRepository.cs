@@ -13,5 +13,6 @@ namespace RentApp.Persistance.Repository
         AppUser FirstOrDeafult(System.Linq.Expressions.Expression<Func<AppUser, bool>> predicate);
         IEnumerable<Rent> GetRents(int userId);
         void DeleteRents(int userId);
+        AppUser GetUserInfo(string email);
     }
 }

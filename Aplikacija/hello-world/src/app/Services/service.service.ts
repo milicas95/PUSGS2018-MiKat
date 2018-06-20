@@ -11,25 +11,12 @@ import { debug } from 'util';
 @Injectable()
 export class ServiceService {
 
-  constructor(private http:Http ) { }
-
-  private parseData(res:Response)
-  {
-    return res.json() || [];
-  }
-
-  private handleError(error: Response | any) {
-    let errorMessage: string;
-    errorMessage = error.message ? error.message : error.toString();
-    return Observable.throw(errorMessage);
-  }
+  constructor(private http:HttpClient ) { }
 
   getMethod():Observable<any>
   {
     //debugger
-    return this.http.get('http://localhost:51680/api/services')
-    .map(this.parseData)
-    .catch(this.handleError);
+    return this.http.get('http://localhost:51680/api/services');
   }
 
   postMethod(newMember):void
@@ -65,9 +52,7 @@ export class ServiceService {
 
   getVehiclesMethod(id:number):Observable<any>
   {
-    return this.http.get('http://localhost:51680/api/services/' + id)
-    .map(this.parseData)
-    .catch(this.handleError);
+    return this.http.get('http://localhost:51680/api/services/' + id);
   }
 
   postVehiclesMethod(newMember):void
@@ -90,9 +75,7 @@ export class ServiceService {
 
   getBranchesMethod(id:number):Observable<any>
   {
-      return this.http.get('http://localhost:51680/api/Branches/' + id)
-      .map(this.parseData)
-      .catch(this.handleError);
+      return this.http.get('http://localhost:51680/api/Branches/' + id);
   }
 
   postBranchesMethod(newMember):void

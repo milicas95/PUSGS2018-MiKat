@@ -6,41 +6,37 @@ import { User } from '../Models/user.model';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Reservation } from 'src/app/Models/reservation.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ProfileService {
 
-  constructor(private http:Http) { }
-  
-    private parseData(res:Response)
-    {
-      return res.json() || [];
-    }
-  
-    private handleError(error: Response | any) {
-      let errorMessage: string;
-      errorMessage = error.message ? error.message : error.toString();
-      return Observable.throw(errorMessage);
-    }
+  constructor(private http:HttpClient) { }
 
     // prosiriti backend da na osnovu emaila nadje ostale informacije u korisniku
-    getUser():Observable<User>
+    getUser():Observable<any>
     {
-      return this.http.get("http://localhost:51680/api/Account/UserInfo")
-      .map(this.parseData)
-      .catch(this.handleError);
+      return this.http.get("http://localhost:51680/api/UserInfo");
+
     }
 
-    getRents(): Observable<Reservation[]>
+    getRents(): Observable<any>
     {
-        return this.http.get("http://localhost:51680/api/Rents")
-        .map(this.parseData)
-        .catch(this.handleError);
+        return this.http.get("http://localhost:51680/api/Rents");
     }
 
     // dodaje sliku = novi kontroler
     upload(url:string)
     {
       this.http.post("http://localhost:51680/api/",url);
+    }
+
+    updateUser(user:User):void
+    {
+      this.http.put("http://localhost:51680/api/appusers/"+user.Id, user)
+      .subscribe(
+        data=>{console.log(data)},
+        err=>{console.log(err)}
+      );
     }
 }

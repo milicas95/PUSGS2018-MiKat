@@ -4,11 +4,12 @@ import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class RegisterService {
 
-  constructor(private http:Http) { }
+  constructor(private http:HttpClient) { }
 
   postMethod(newMember):void
   {
