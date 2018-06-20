@@ -1,11 +1,15 @@
+import { Data } from "@angular/router/src/config";
+import { Branch } from "src/app/Models/branch.model";
+import { User } from "src/app/Models/user.model";
+import { Vehicle } from "src/app/Models/vehicle.model";
+
 export class Reservation {
-    ReservationID: string;
-    ReservationDate: string;
-    ReturnDate: string;
-    Rating: string;
-    Comment: string;
-    AppUserID: string;
-    SourceBranchID: string;
-    DestinationBranchID: string;
-    VehicleID: string;
+    Id: number;
+    Start: Data;
+    End: Data;
+    Used: boolean;
+    User: User;
+    BeginBranch: Branch;
+    EndBranch: Branch;
+    Vehicle: Vehicle;
 }

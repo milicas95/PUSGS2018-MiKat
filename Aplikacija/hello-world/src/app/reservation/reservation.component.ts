@@ -27,36 +27,84 @@ import { NgForm } from '@angular/forms';
   ]
 })
 export class ReservationComponent implements OnInit {
-
-  private vehicle:Vehicle;
-  private vehicleService:Service;
+  private selectedService:Service;
+  private rentVehicle:Vehicle;
+  private vehicles:Vehicle[];
+  private serviceList:Service[];
   private branches:Branch[];
+  private startBranch:Branch;
+  private endBranch:Branch;
   private date:number;
-  private reservationService:ReservationService;
+  private isVisible=true;
 
   constructor(private service:ReservationService,private serviceService:ServiceService) 
   { 
-    this.reservationService=service;
     this.date = Date.now();
   }
 
   ngOnInit() {
-    this.getVehicle();
+    this.serviceList=[];
+    this.vehicles=[];
+    this.branches=[];
+    this.callGet();
+  }
+
+  toggle(vehicle:Vehicle):void {
+    this.isVisible = !this.isVisible;
+    this.rentVehicle=vehicle;
+  }
+
+  callGet()
+  {
+    this.serviceService.getMethod()
+    .subscribe(
+      data=> {
+        this.serviceList=data;
+      },
+      error=>
+      {
+        
+      }
+    )
   }
 
   onSubmit(res:Reservation,form:NgForm)
   {
-    this.reservationService.Reserve(res);
+    debugger
+    res.Vehicle=this.rentVehicle;
+    this.serviceService.getBranchesMethod(res.BeginBranch.Id)
+    .subscribe(
+      data=>{
+        this.startBranch=data;
+        this.serviceService.getBranchesMethod(res.EndBranch.Id)
+        .subscribe(
+          data=>{
+            this.endBranch=data;
+            res.BeginBranch=this.startBranch;
+            res.EndBranch=this.endBranch;
+            this.service.Reserve(res);
+          }
+        );
+      }
+    );
+    
     form.reset();
   }
 
-  getVehicle(){
-    this.reservationService.getVehicle()
+  onSelect(s:Service):void
+  {
+    this.vehicles=[];
+    this.serviceService.getVehiclesMethod(s.Id)
     .subscribe(
-      data => {
-        this.vehicle = data;
-         this.branches = this.vehicle.Service.Branches;
+      data=>{
+      this.selectedService=data;
+      this.vehicles=this.selectedService.Vehicles;
+      this.branches=this.selectedService.Branches;
+      },
+      error=>
+      {
+  
       }
-    );
+    )
   }
 }

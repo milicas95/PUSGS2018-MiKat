@@ -11,17 +11,13 @@ import { HttpClient } from '@angular/common/http';
 export class ReservationService {
 
   constructor(private http:HttpClient) { }
-
-  getVehicle(): Observable<any>
-    {
-        return this.http.get("http://localhost:51680/api/Reservation");
-    }
     
   Reserve(reservation: Reservation){
-        this.http.post("http://localhost:51680/api/Reservation",reservation)
+    debugger
+        this.http.post("http://localhost:51680/api/Rents",reservation)
         .subscribe(
-          data => {}, // Reach here if res.status >= 200 && <= 299
-          err => {} // Reach here if fails
+          data => {debugger}, // Reach here if res.status >= 200 && <= 299
+          err => {debugger} // Reach here if fails
         );
     }
 }

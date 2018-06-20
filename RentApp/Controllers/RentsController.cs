@@ -92,7 +92,7 @@ namespace RentApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        [Authorize(Roles = "AppUser")]
+        //[Authorize(Roles = "AppUser")]
         // POST: api/Rents
         [ResponseType(typeof(Rent))]
         public IHttpActionResult PostRent(Rent rent)

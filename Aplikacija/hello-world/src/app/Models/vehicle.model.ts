@@ -7,7 +7,7 @@ export class Vehicle {
     Year: string;
     Photo: string;
     Description: string;
-    Available: string;
+    Available: boolean;
     Service: Service;
     ServiceID: string;
 }

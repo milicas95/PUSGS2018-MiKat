@@ -20,30 +20,63 @@
   
       <router-outlet></router-outlet>
 
-<form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
-    <div>
-      <label for="ReservationDate">Reservation date</label>
-      <input type="date" name="ReservationDate" ngModel>
-    </div>
-    <div>
-      <label for="SourceBranchID">Source branch</label>
-      <select name="SourceBranchID">
-        <option *ngFor="let branch of branches" [ngModel]="branch.BranchID">
-          {{branch.Address}}
-        </option>
-      </select>
-    </div>
-    <div>
-        <label for="ReturnDate">Returning date</label>
-        <input type="date" name="ReturnDate" ngModel>
-    </div>
-    <div>
-        <label for="ReturnBranchID">Returning branch</label>
-        <select name="ReturnBranchID">
-          <option *ngFor="let branch of branches" [ngModel]="branch.BranchID">
-            {{branch.Address}}
-          </option>
-        </select>
-    </div>
-    <input type="submit" value="Reserve">
-  </form>
+      <div class="cards">
+          <div *ngFor="let service of serviceList" [class.selected]="service === selectedService"
+            (click)="onSelect(service)">
+                <article class="card" >
+                    <!-- <img class="card-img-top" src="{{service.Logo}}" alt="Card image cap"> -->
+                    <picture class="thumbnail">
+                        <img class="category__01" src="https://abbeyjfitzgerald.com/wp-content/uploads/2018/01/cloud.svg" alt="" />
+                      </picture>
+                    <div class="card-content">
+                        <p class="category category__01">{{service.Name}}</p> 
+                    </div>
+                    <footer>
+                        <div class="post-meta">
+                        <h4 style="font-size: 14px" name="Description">{{service.Description | uppercase}}</h4>
+                      </div>
+                    </footer>
+                  </article>
+                </div>
+              </div>
+   
+              <div class="center" *ngIf="selectedService">
+                  <div style="display: inline-block;" *ngFor="let vehicle of vehicles">
+                      <div>{{vehicle.Model}}</div>
+                      <div>{{vehicle.Manufactor}}</div>
+                      <div>{{vehicle.Year}}</div>
+                      <div>{{vehicle.Available}}</div>
+                      <div class="alert alert-success box-msg">
+                          <button class="button1" (click)="toggle(vehicle)">Reserve</button>
+                        </div>
+                  </div>
+                </div>
+                <div *ngIf=!isVisible class="center">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
+            <div>
+               <label for="Start">Pick-up date</label>
+              <input type="date" name="Start" ngModel>
+          </div>
+         <div>
+             <label for="BeginBranch">From</label>
+             <select name="BeginBranch"  ngModel>
+              <option *ngFor="let branch of branches" ([ngValue])="branch.Id">
+                {{branch.Address}}
+              </option>
+             </select>
+         </div>
+        <div>
+             <label for="End">Drop-off date</label>
+             <input type="date" name="End" ngModel>
+       </div>
+       <div>
+            <label for="EndBranch">To</label>
+            <select name="EndBranch" ([ngvalue])="branch.Id" ngModel>
+             <option *ngFor="let branch of branches" ([ngValue])="branch.Id">
+                 {{branch.Address}}
+              </option>
+            </select>
+       </div>
+        <input type="submit" value="Reserve">
+     </form>
+     </div>
