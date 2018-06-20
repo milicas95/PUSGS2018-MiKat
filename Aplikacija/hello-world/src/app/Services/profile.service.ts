@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Reservation } from 'src/app/Models/reservation.model';
 import { HttpClient } from '@angular/common/http';
+import { Password } from 'src/app/Models/password.model';
 
 @Injectable()
 export class ProfileService {
@@ -38,5 +39,11 @@ export class ProfileService {
         data=>{console.log(data)},
         err=>{console.log(err)}
       );
+    }
+
+    changePassword(password:Password): Observable<any>
+    {
+      debugger
+      return this.http.post("http://localhost:51680/api/Account/ChangePassword",password);
     }
 }

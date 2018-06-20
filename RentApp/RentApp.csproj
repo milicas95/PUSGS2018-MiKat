@@ -330,6 +330,14 @@
     <Compile Include="Migrations\201806200742396_updated branch.Designer.cs">
       <DependentUpon>201806200742396_updated branch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806201322251_updated rent.cs" />
+    <Compile Include="Migrations\201806201322251_updated rent.Designer.cs">
+      <DependentUpon>201806201322251_updated rent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806201333397_branch withoud rent.cs" />
+    <Compile Include="Migrations\201806201333397_branch withoud rent.Designer.cs">
+      <DependentUpon>201806201333397_branch withoud rent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -475,6 +483,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806200742396_updated branch.resx">
       <DependentUpon>201806200742396_updated branch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201322251_updated rent.resx">
+      <DependentUpon>201806201322251_updated rent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806201333397_branch withoud rent.resx">
+      <DependentUpon>201806201333397_branch withoud rent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

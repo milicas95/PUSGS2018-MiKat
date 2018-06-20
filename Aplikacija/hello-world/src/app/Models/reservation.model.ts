@@ -9,7 +9,7 @@ export class Reservation {
     End: Data;
     Used: boolean;
     User: User;
-    BeginBranch: Branch;
-    EndBranch: Branch;
+    BeginBranch: string;
+    EndBranch: string;
     Vehicle: Vehicle;
 }

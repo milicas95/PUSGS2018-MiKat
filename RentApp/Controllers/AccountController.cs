@@ -113,7 +113,7 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
+            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.CurrentPassword,
                 model.NewPassword);
             
             if (!result.Succeeded)
@@ -322,14 +322,14 @@ namespace RentApp.Controllers
             var user = new RAIdentityUser() { Id = model.Email, UserName = model.Email, Email = model.Email, AppUser = appUser, PasswordHash = RAIdentityUser.HashPassword(model.Password) };
 
             UserManager.Create(user);
-            if (model.Role)
-            {
-                UserManager.AddToRole(user.Id, "Manager");
-            }
-            else
-            {
+            //if (model.Role)
+            //{
+            //    UserManager.AddToRole(user.Id, "Manager");
+            //}
+            //else
+            //{
                 UserManager.AddToRole(user.Id, "AppUser");
-            }
+            //}
 
             return Ok();
         }

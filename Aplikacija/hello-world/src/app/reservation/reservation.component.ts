@@ -72,21 +72,21 @@ export class ReservationComponent implements OnInit {
   {
     debugger
     res.Vehicle=this.rentVehicle;
-    this.serviceService.getBranchesMethod(res.BeginBranch.Id)
-    .subscribe(
-      data=>{
-        this.startBranch=data;
-        this.serviceService.getBranchesMethod(res.EndBranch.Id)
-        .subscribe(
-          data=>{
-            this.endBranch=data;
-            res.BeginBranch=this.startBranch;
-            res.EndBranch=this.endBranch;
-            this.service.Reserve(res);
-          }
-        );
-      }
-    );
+    //this.serviceService.getBranchesMethod(res.BeginBranch.Id)
+    //.subscribe(
+    //  data=>{
+    //    this.startBranch=data;
+    //    this.serviceService.getBranchesMethod(res.EndBranch.Id)
+    //    .subscribe(
+    //      data=>{
+    //        this.endBranch=data;
+    //        res.BeginBranch=this.startBranch;
+    //        res.EndBranch=this.endBranch;
+    //        this.service.Reserve(res);
+    //      }
+    //    );
+    //  }
+    //);
     
     form.reset();
   }
