@@ -4,20 +4,24 @@ import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { HttpHeaders } from '@angular/common/http/src/headers';
+import { HttpHeaders } from '@angular/common/http';
 import { User } from '../Models/user.model';
 import { Router } from '@angular/router';
-@Injectable()
+import { HttpClient } from '@angular/common/http';
+
+@Injectable(
+  {providedIn:'root'}
+)
 export class LoginService {
   public error:string;
-  constructor(private http:Http,private router:Router) 
+  constructor(private http:HttpClient,private router:Router) 
   { 
 
   }
 
   getToken(user:User)
   {
-    let headers=new Headers();
+    let headers=new HttpHeaders();
     headers.append('Content-type','application/x-www-form-urlencoded');
 
     if(!localStorage.jwt)
@@ -26,11 +30,7 @@ export class LoginService {
       //debugger
       x.subscribe(
         res=>
-        { 
-          //debugger
-          res = res.json()
-          console.log(res);
-          
+        {        
           let jwt=res.access_token;
           //debugger
           let jwtData=jwt.split('.')[1]
@@ -50,7 +50,7 @@ export class LoginService {
 
           //debugger
           //if(localStorage.getItem('role')=="AppUser")
-            this.router.navigate(['/user']);    
+            this.router.navigate(['/profile']);    
           
           this.error="";
 
@@ -87,8 +87,7 @@ export class LoginService {
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('role');
+    localStorage.clear();
     this.router.navigate(['/service']);
   }
 }

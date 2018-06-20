@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
   onSubmit(user:User,form:NgForm)
   {
     debugger
-    this.loginUser=user;
-    console.log(user);
     this.loginService.getToken(user);
     form.reset();
   }

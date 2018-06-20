@@ -5,11 +5,12 @@ import { Headers, RequestOptions } from '@angular/http';
 import { Branch } from '../Models/branch.model';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ManagerService {
 
-  constructor(private http:Http) { }
+  constructor(private http:HttpClient) { }
 
   postService(newMember):void
   {

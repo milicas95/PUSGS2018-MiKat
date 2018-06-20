@@ -33,16 +33,17 @@ namespace RentApp.Controllers
 
         // GET: api/AppUsers/5
         [ResponseType(typeof(AppUser))]
-        public IHttpActionResult GetAppUser(int id)
+        [Route("api/UserInfo")]
+        public IHttpActionResult GetUserInfo()
         {
-            AppUser appUser = unitOfWork.Users.Get(id);
+            AppUser appUser = unitOfWork.Users.GetUserInfo(User.Identity.Name);
 
             if (appUser == null)
             {
                 return NotFound();
             }
 
-            appUser.Rents = unitOfWork.Users.GetRents(id).ToList();
+            appUser.Rents = unitOfWork.Users.GetRents(appUser.Id).ToList();
             return Ok(appUser);
         }
 

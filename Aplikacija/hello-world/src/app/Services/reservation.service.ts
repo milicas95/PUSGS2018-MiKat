@@ -5,28 +5,16 @@ import { Headers, RequestOptions } from '@angular/http';
 import { Reservation } from '../Models/reservation.model';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ReservationService {
 
-  constructor(private http:Http) { }
-
-  private parseData(res:Response)
-  {
-    return res.json() || [];
-  }
-
-  private handleError(error: Response | any) {
-    let errorMessage: string;
-    errorMessage = error.message ? error.message : error.toString();
-    return Observable.throw(errorMessage);
-  }
+  constructor(private http:HttpClient) { }
 
   getVehicle(): Observable<any>
     {
-        return this.http.get("http://localhost:51680/api/Reservation")
-        .map(this.parseData)
-        .catch(this.handleError);
+        return this.http.get("http://localhost:51680/api/Reservation");
     }
     
   Reserve(reservation: Reservation){

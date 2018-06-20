@@ -27,9 +27,7 @@ export class ProfileComponent implements OnInit {
   private clicked=false;
   private profileService:ProfileService;
   private rentsList:Reservation[];
-  private currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  private token = this.currentUser.token; // your token
-  private user:string;
+  public user:User;
 
   constructor(private service:ProfileService) 
   { 
@@ -49,14 +47,17 @@ export class ProfileComponent implements OnInit {
 
   getUser()
   {
-    this.user=this.currentUser.name;
-    console.log(this.currentUser);
-    //debugger
-    // this.profileService.getUser()
-    // .subscribe(
-    //   data=>{ this.user=this.currentUser.name;  },
-    //   error=>{}
-    // )
+    this.profileService.getUser()
+    .subscribe(
+      data=>
+      {
+        this.user = data;
+      },
+      error=>
+      {
+        console.log(error);
+      }
+    )
   }
   
   getRents(){
@@ -67,10 +68,18 @@ export class ProfileComponent implements OnInit {
     )
   }
 
-  onSubmit(model:string,form:NgForm)
+  onSubmit(model:User,form:NgForm)
   {
-    this.url=model;
-    this.profileService.upload(model);
-    form.reset();
+    debugger
+    if(model.FullName != "")
+    this.user.FullName = model.FullName;
+    if(model.Email != "")
+    this.user.Email = model.Email;
+    if(model.Birthday != null)
+    this.user.Birthday = model.Birthday;
+    this.profileService.updateUser(this.user);
+    // this.url=model;
+    // this.profileService.upload(model);
+    // form.reset();
   }
 }
