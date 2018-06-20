@@ -13,6 +13,5 @@ namespace RentApp.Models.Entities
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public virtual Service Service { get; set; }
-        public virtual List<Rent> Rents { get; set; }
     }
 }

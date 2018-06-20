@@ -14,17 +14,17 @@ namespace RentApp.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Start = c.DateTime(),
                         End = c.DateTime(),
-                        Branch_Id = c.Int(),
                         Vehicle_Id = c.Int(),
                         AppUser_Id = c.Int(),
+                        Branch_Id = c.Int()
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Branches", t => t.Branch_Id)
                 .ForeignKey("dbo.Vehicles", t => t.Vehicle_Id)
                 .ForeignKey("dbo.AppUsers", t => t.AppUser_Id)
-                .Index(t => t.Branch_Id)
+                .ForeignKey("dbo.Branches", t => t.Branch_Id)
                 .Index(t => t.Vehicle_Id)
-                .Index(t => t.AppUser_Id);
+                .Index(t => t.AppUser_Id)
+                .Index(t => t.Branch_Id);
             
         }
         
