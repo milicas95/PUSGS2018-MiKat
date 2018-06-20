@@ -43,6 +43,15 @@ export class ServiceService {
     );
   }
 
+  deleteMethod(id:number):void
+  {
+    this.http.delete('http://localhost:51680/api/services/' + id)
+    .subscribe(
+      data=>{},
+      err=>{}
+    );
+  }
+
   getVehiclesMethod(id:number):Observable<any>
   {
     return this.http.get('http://localhost:51680/api/services/' + id)
@@ -59,12 +68,37 @@ export class ServiceService {
     );
   }
 
+  deleteVehiclesMethod(id:number):void
+  {
+    this.http.delete('http://localhost:51680/api/Vehicles/' + id)
+    .subscribe(
+      data=>{},
+      err=>{}
+    );
+  }
+
+  getBranchesMethod(id:number):Observable<any>
+  {
+      return this.http.get('http://localhost:51680/api/Branches/' + id)
+      .map(this.parseData)
+      .catch(this.handleError);
+  }
+
   postBranchesMethod(newMember):void
   {
     this.http.post("http://localhost:51680/api/Branches",newMember)
     .subscribe(
-      (data)=>{debugger},
-      (err)=>{debugger}
+      (data)=>{},
+      (err)=>{}
+    );
+  }
+
+  deleteBranchesMethod(id:number):void
+  {
+    this.http.delete('http://localhost:51680/api/Branches/' + id)
+    .subscribe(
+      data=>{},
+      err=>{}
     );
   }
 }

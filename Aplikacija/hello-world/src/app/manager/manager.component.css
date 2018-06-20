@@ -151,7 +151,7 @@ li a:hover {
   }
   
   .post-meta {
-    margin-top: .15rem;
+    margin-top: .10rem;
   }
   
   .comments {
@@ -173,4 +173,42 @@ li a:hover {
   border: rgb(80, 133, 160);
   padding: 10px;
   text-align: center;
+}
+
+button{
+  background-color: #7e8688;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 8px;
+  border-radius: 50%;
+}
+
+button:hover{
+  color: rgb(49, 57, 61);
+  background-color: #DDD;
+  left: .1em;
+}
+
+.button1 {
+  background-color: #50c6db;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 8px;
+  border-radius: 50%;
+}
+
+.button1:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
 }

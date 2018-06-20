@@ -149,3 +149,22 @@
   padding: 10px;
   text-align: center;
 }
+
+button {
+  background-color: #50c6db;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 8px;
+  border-radius: 50%;
+}
+
+button:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}

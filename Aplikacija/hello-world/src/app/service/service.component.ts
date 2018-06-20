@@ -3,6 +3,7 @@ import { ServiceService } from '../Services/service.service';
 import { Service } from '../Models/service.model';
 import { NgForm } from '@angular/forms';
 import { Vehicle } from 'src/app/Models/vehicle.model';
+import { Branch } from 'src/app/Models/branch.model';
 
 @Component({
   selector: 'app-service',
@@ -18,15 +19,24 @@ export class ServiceComponent implements OnInit
   private serviceService:ServiceService;
   private selectedService:Service;
   private vehicles:Vehicle[];
+  private branches:Branch[];  
+  private buttonDisabled=true;
 
   constructor(private service:ServiceService) 
   { 
     this.serviceService=service;
     this.serviceList=[];
     this.vehicles=[];
+    this.branches=[];
+
+    if( localStorage.role != "AppUser" )
+    {
+      this.buttonDisabled = false;
+    }
   }
 
   ngOnInit() {
+    //debugger
     this.callGet();
   }
 
@@ -41,18 +51,17 @@ export class ServiceComponent implements OnInit
 
   onSelect(s:Service):void
   {
-    //debugger
     this.vehicles=[];
     this.serviceService.getVehiclesMethod(s.Id)
     .subscribe(
       data=>{
       this.selectedService=data;
       this.vehicles=this.selectedService.Vehicles;
-      },
-      error=>
-      {
+     },
+     error=>
+     {
   
-      }
+     }
     )
   }
 
@@ -61,7 +70,6 @@ export class ServiceComponent implements OnInit
     this.serviceService.getMethod()
     .subscribe(
       data=> {
-        //debugger
         this.serviceList=data;
       },
       error=>

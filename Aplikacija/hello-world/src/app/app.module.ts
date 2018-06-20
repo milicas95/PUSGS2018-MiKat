@@ -6,8 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ServiceComponent } from '../app/service/service.component';
 import { ServiceDetailsComponent } from '../app/service-details/service-details.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from '../app/login/login.component';
+import { RegisterComponent } from '../app/register/register.component';
 import { ClockComponent } from '../app/get-clock-time/get-clock-time.component';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { HttpClientXsrfModule } from '@angular/common/http';
@@ -17,8 +17,9 @@ import { CanActivateViaAuthGuard } from '../app/Tokens/auth.guard';
 import { AppUserComponent } from '../app/app-user/app-user.component';
 import { ReservationComponent } from '../app/reservation/reservation.component';
 import { ProfileComponent } from '../app/profile/profile.component';
-import { LogoutComponent } from './logout/logout.component';
-import { ManagerComponent } from 'src/app/manager/manager.component';
+import { LogoutComponent } from '../app/logout/logout.component';
+import { ManagerComponent } from '../app/manager/manager.component';
+import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
 
 const routes: Routes = [
   { path: '', component: ServiceComponent },
@@ -43,7 +44,8 @@ const routes: Routes = [
     ReservationComponent,
     ProfileComponent,
     LogoutComponent,
-    ManagerComponent
+    ManagerComponent,
+    VehicleDetailsComponent
   ],
   imports: [
     BrowserModule,

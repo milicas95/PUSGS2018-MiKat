@@ -1,0 +1,12 @@
+<div class="center" *ngIf="selectedService">
+  <div>
+    <li *ngFor="let vehicle of vehicles">
+      <div>{{vehicle.Model}}</div>
+      <div>{{vehicle.Manufactor}}</div>
+      <div>{{vehicle.Year}}</div>
+    </li>
+  </div>
+  <div *ngIf="buttonDisabled" class="alert alert-success box-msg">
+      <button (click)="deleteVehicle()">Delete vehicle</button>
+  </div>
+</div>

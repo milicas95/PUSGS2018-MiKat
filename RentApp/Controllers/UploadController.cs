@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -11,70 +12,43 @@ namespace RentApp.Controllers
 {
     public class UploadController : ApiController
     {
-
-        [Route("api/PostUserImage")]
-        [AllowAnonymous]
-        public async Task<HttpResponseMessage> PostUserImage()
+        [HttpGet]
+        [Route("GetImage")]
+        public HttpResponseMessage ImageGet(string path)
         {
-            Dictionary<string, object> dict = new Dictionary<string, object>();
-            try
+            if(path==null)
             {
-
-                var httpRequest = HttpContext.Current.Request;
-
-                foreach (string file in httpRequest.Files)
-                {
-                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
-
-                    var postedFile = httpRequest.Files[file];
-                    if (postedFile != null && postedFile.ContentLength > 0)
-                    {
-
-                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
-
-                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
-                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
-                        var extension = ext.ToLower();
-                        if (!AllowedFileExtensions.Contains(extension))
-                        {
-
-                            var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
-
-                            dict.Add("error", message);
-                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
-                        }
-                        else if (postedFile.ContentLength > MaxContentLength)
-                        {
-
-                            var message = string.Format("Please Upload a file upto 1 mb.");
-
-                            dict.Add("error", message);
-                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
-                        }
-                        else
-                        {
-                            var filePath = HttpContext.Current.Server.MapPath("~/Content/Images/Services" + postedFile.FileName + extension);
-
-                            postedFile.SaveAs(filePath);
-
-                            filePath = @"http://localhost:51680/Content/Images/Services" + postedFile.FileName;
-
-                        }
-                    }
-
-                    var message1 = string.Format("Image Updated Successfully.");
-                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
-                }
-                var res = string.Format("Please Upload a image.");
-                dict.Add("error", res);
-                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+                path = "noimage.jpg";
             }
-            catch (Exception ex)
-            {
-                var res = string.Format("some Message");
-                dict.Add("error", res);
-                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
-            }
+
+            var filePath = HttpContext.Current.Server.MapPath("~/Content/Images/" + path);
+            var ext = System.IO.Path.GetExtension(filePath);
+            var contents = System.IO.File.ReadAllBytes(filePath);
+
+            System.IO.MemoryStream ms = new System.IO.MemoryStream(contents);
+
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StreamContent(ms);
+            response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/" + ext);
+
+            return response;
+        }
+
+        [HttpPost]
+        [Route("UploadImage")]
+        public HttpResponseMessage UploadImage()
+        {
+            string imageName = null;
+            var httpRequest = HttpContext.Current.Request;
+            var postedFile = httpRequest.Files["Image"];
+
+            imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ","-");
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+
+            var filePath = HttpContext.Current.Server.MapPath("~/Content/Images/" + imageName);
+            postedFile.SaveAs(filePath);
+            // service
+            return Request.CreateResponse(HttpStatusCode.Created);
         }
     }
 }

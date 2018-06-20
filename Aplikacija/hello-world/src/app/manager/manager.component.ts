@@ -19,9 +19,11 @@ const URL='http://localhost:51680/api/PostUserImage';
 export class ManagerComponent implements OnInit {
   private selectedService:Service;
   private vehicles:Vehicle[];
+  private branches:Branch[];
   private serviceList:Service[];
-  isVisible = true;
-  isVisible1 = true;
+  private isVisible = true;
+  private isVisible1 = true;
+  private isVisible2 = true;
   public uploader:FileUploader=new FileUploader({url:URL,itemAlias:'photo'});
   url:string[];
 
@@ -37,6 +39,8 @@ export class ManagerComponent implements OnInit {
 
   ngOnInit() {
     this.serviceList=[];
+    this.vehicles=[];
+    this.branches=[];
     this.callGet();
   }
 
@@ -48,6 +52,10 @@ export class ManagerComponent implements OnInit {
     this.isVisible1 = !this.isVisible1;
   }
 
+  toggle2():void {
+    this.isVisible2 = !this.isVisible2;
+  }
+
   onSelect(s:Service):void
   {
     this.vehicles=[];
@@ -56,6 +64,7 @@ export class ManagerComponent implements OnInit {
       data=>{
       this.selectedService=data;
       this.vehicles=this.selectedService.Vehicles;
+      this.branches = this.selectedService.Branches;
       },
       error=>
       {
@@ -63,7 +72,6 @@ export class ManagerComponent implements OnInit {
       }
     )
   }
-
 
   callGet()
   {
@@ -81,6 +89,7 @@ export class ManagerComponent implements OnInit {
 
   addService(model:Service,form:NgForm)
   {
+    debugger
     this.service.postMethod(model);
     console.log(model);
     form.reset();
@@ -101,6 +110,19 @@ export class ManagerComponent implements OnInit {
     this.service.postBranchesMethod(model);
     console.log(model);
     form.reset();
+  }
+
+  deleteVehicle()
+  {
+    this.service.deleteVehiclesMethod(this.selectedService.Id);
+    console.log("Vehicle has been deleted");
+  }
+
+  deleteBranch()
+  {
+    debugger
+    this.service.deleteBranchesMethod(this.selectedService.Id);
+    console.log("Branch has been deleted");
   }
 
   onSelectFile(event:any) {

@@ -1,8 +1,12 @@
 <div class="center" *ngIf="service">
   <div>
     <h2>{{service.Name | uppercase}}</h2>
-    <div>Logo: {{service.Logo}}</div>
+    <!-- <div>Logo: {{service.Logo}}</div> -->
     <div>Email: {{service.Email}}</div>
     <div>Description: {{service.Description}}</div>
   </div>
+  <div *ngIf="buttonDisabled" class="alert alert-success box-msg">
+      <button (click)="deleteService()">Delete service</button>
+    </div>
 </div>
+
