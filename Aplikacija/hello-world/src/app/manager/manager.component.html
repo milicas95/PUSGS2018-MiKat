@@ -21,11 +21,6 @@
               <input type="text" name="Name" ngModel>
             </div>
             <div>
-              <label for="Logo">Logo</label>
-              <input type="file" name="Logo" (change)="onSelectFile($event)" ngModel>
-              <img [src]="url1" height="200">
-            </div>
-            <div>
               <label for="Email">Email</label>
               <input type="text" name="Email" ngModel>
             </div>
@@ -35,6 +30,12 @@
             </div>
             <input type="submit">
           </form>
+          <!-- <form #imageForm="ngForm" (ngSubmit)="addImage(Logo)"> -->
+            <!-- <label for="Logo">Logo</label>
+            <img [src]="imageUrl" style="width:250px;height:250px;">
+            <input type="file" #Logo accept="image/*" (change)="handleFileInput($event.target.files)">
+            <button type="submit">Upload image</button> -->
+          <!-- </form> -->
       </div>
   </div>
 

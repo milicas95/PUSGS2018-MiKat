@@ -9,7 +9,9 @@ import { Vehicle } from '../Models/vehicle.model';
 import { ServiceDetailsComponent } from '../service-details/service-details.component';
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+
 const URL='http://localhost:51680/api/PostUserImage';
+
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
@@ -24,24 +26,31 @@ export class ManagerComponent implements OnInit {
   private isVisible = true;
   private isVisible1 = true;
   private isVisible2 = true;
-  public uploader:FileUploader=new FileUploader({url:URL,itemAlias:'photo'});
-  url:string[];
+  
+  imageUrl:string="/assets/img/images.png";
+  fileToUpload:File=null;
 
   constructor(private service:ServiceService,private router:Router,private activated:ActivatedRoute) 
   { 
-    this.uploader.onAfterAddingFile=(file)=>{file.withCredentials=false};
-  this.uploader.onCompleteItem=(item:any,response:any,status:any,headers:any)=>
-  {
-    this.url.push(JSON.parse(response));
-
   }    
-  }
 
   ngOnInit() {
     this.serviceList=[];
     this.vehicles=[];
     this.branches=[];
     this.callGet();
+  }
+
+  handleFileInput(file:FileList)
+  {
+    this.fileToUpload=file.item(0);
+
+    var reader=new FileReader();
+    reader.onload=(event:any)=>{
+      this.imageUrl=event.target.result;
+    }
+
+    reader.readAsDataURL(this.fileToUpload);
   }
 
   toggle():void {
@@ -71,6 +80,12 @@ export class ManagerComponent implements OnInit {
   
       }
     )
+  }
+
+  addImage(Logo)
+  {
+    debugger
+    this.service.postImageMethod(Logo);
   }
 
   callGet()
@@ -131,7 +146,7 @@ export class ManagerComponent implements OnInit {
 
 
       reader.onload = (event:any) => { // called once readAsDataURL is completed
-        this.url = event.target.result;
+        //this.url = event.target.result;
       }
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url

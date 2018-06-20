@@ -11,6 +11,8 @@ using System.Web.Http.Description;
 using RentApp.Models.Entities;
 using RentApp.Persistance;
 using RentApp.Persistance.UnitOfWork;
+using System.Web;
+using System.IO;
 
 namespace RentApp.Controllers
 {
@@ -98,6 +100,28 @@ namespace RentApp.Controllers
             unitOfWork.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = service.Id }, service);
+        }
+
+        [HttpPost]
+        [Route("api/UploadImage")]
+        public HttpResponseMessage UploadImage()
+        {
+            string imageName = null;
+            var httpRequest = HttpContext.Current.Request;
+            var postedFile = httpRequest.Files["Logo"];
+
+            imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+
+            var filePath = HttpContext.Current.Server.MapPath("~/Content/Images/" + imageName);
+            postedFile.SaveAs(filePath);
+
+            // service
+            Service service = new Service { Logo = imageName, Name = httpRequest["Name"], Email = httpRequest["Email"], Description = httpRequest["Description"] };
+            unitOfWork.Services.Add(service);
+            unitOfWork.Complete();
+
+            return Request.CreateResponse(HttpStatusCode.Created);
         }
 
         // DELETE: api/Services/5

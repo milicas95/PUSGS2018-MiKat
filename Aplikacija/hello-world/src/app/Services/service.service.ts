@@ -32,14 +32,25 @@ export class ServiceService {
     .catch(this.handleError);
   }
 
-
-
   postMethod(newMember):void
   {
     this.http.post("http://localhost:51680/api/services",newMember)
     .subscribe(
       data => {}, // Reach here if res.status >= 200 && <= 299
       err => {} // Reach here if fails
+    );
+  }
+
+  postImageMethod(fileToUpload:File)
+  {
+    debugger
+    const endpoint='http://localhost:51680/api/UploadImage';
+    const formData:FormData=new FormData();
+    formData.append('Logo',fileToUpload,fileToUpload.name);
+    return this.http.post('http://localhost:51680/api/UploadImage',formData)
+    .subscribe(
+      data=>{debugger},
+      err=>{debugger}
     );
   }
 
