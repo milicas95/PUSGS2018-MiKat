@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
   private rentsList:Reservation[];
   public user:User;
 
-  constructor(private service:ProfileService) 
+  constructor(private service:ProfileService, private router:Router) 
   { 
     this.profileService=service;
     this.rentsList=[];
@@ -81,5 +81,10 @@ export class ProfileComponent implements OnInit {
     // this.url=model;
     // this.profileService.upload(model);
     // form.reset();
+  }
+
+  changePassword()
+  {
+    this.router.navigate(['/password']);
   }
 }

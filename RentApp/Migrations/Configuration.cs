@@ -60,7 +60,7 @@ namespace RentApp.Migrations
 
                   u => u.FullName,
 
-                  new AppUser() { FullName = "Admin Adminovic" }
+                  new AppUser() { FullName = "Admin Adminovic" , Email = "admin@yahoo.com" }
 
             );
 
@@ -68,7 +68,7 @@ namespace RentApp.Migrations
 
                 p => p.FullName,
 
-                new AppUser() { FullName = "AppUser AppUserovic" }
+                new AppUser() { FullName = "AppUser AppUserovic", Email = "appu@yahoo.com" }
 
             );
 
@@ -116,7 +116,7 @@ namespace RentApp.Migrations
             if (!context.Users.Any(u => u.UserName == "admin"))
             {
                 var _appUser = context.AppUsers.FirstOrDefault(a => a.FullName == "Admin Adminovic");
-                var user = new RAIdentityUser() { Id = "admin", UserName = "admin", Email = "admin@yahoo.com", PasswordHash = RAIdentityUser.HashPassword("admin"), AppUserId = _appUser.Id };
+                var user = new RAIdentityUser() { Id = "admin@yahoo.com", UserName = "admin@yahoo.com", Email = "admin@yahoo.com", PasswordHash = RAIdentityUser.HashPassword("admin"), AppUserId = _appUser.Id };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");
             }
@@ -126,7 +126,7 @@ namespace RentApp.Migrations
             {
 
                 var _appUser = context.AppUsers.FirstOrDefault(a => a.FullName == "AppUser AppUserovic");
-                var user = new RAIdentityUser() { Id = "appu", UserName = "appu", Email = "appu@yahoo.com", PasswordHash = RAIdentityUser.HashPassword("appu"), AppUserId = _appUser.Id };
+                var user = new RAIdentityUser() { Id = "appu@yahoo.com", UserName = "appu@yahoo.com", Email = "appu@yahoo.com", PasswordHash = RAIdentityUser.HashPassword("appu"), AppUserId = _appUser.Id };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "AppUser");
 

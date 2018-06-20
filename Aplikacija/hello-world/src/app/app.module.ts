@@ -20,6 +20,7 @@ import { ProfileComponent } from '../app/profile/profile.component';
 import { LogoutComponent } from '../app/logout/logout.component';
 import { ManagerComponent } from '../app/manager/manager.component';
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
+import { PasswordComponent } from './password/password.component';
 
 const routes: Routes = [
   { path: '', component: ServiceComponent },
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'reservation', component: ReservationComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'manager', component: ManagerComponent }
+  { path: 'manager', component: ManagerComponent },
+  { path: 'password', component:PasswordComponent}
 ];
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ const routes: Routes = [
     ProfileComponent,
     LogoutComponent,
     ManagerComponent,
-    VehicleDetailsComponent
+    VehicleDetailsComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,

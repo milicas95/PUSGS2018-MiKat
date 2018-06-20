@@ -42,9 +42,10 @@ namespace RentApp.Persistance.Repository
                 }
             }
         }
-        public AppUser GetUserInfo(string email)
+        public AppUser GetUserInfo(string userName)
         {
-            return Context.AppUsers.Where(u => u.Email == email).FirstOrDefault();
+            RAIdentityUser user = Context.Users.Where(u => u.UserName == userName).FirstOrDefault();
+            return Context.AppUsers.Where(u => u.Email == user.Email).FirstOrDefault();
         }
     }
 }
