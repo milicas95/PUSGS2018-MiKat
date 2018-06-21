@@ -3,6 +3,7 @@ import { RegisterService } from '../Services/register.service';
 import { User } from '../Models/user.model';
 import { NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

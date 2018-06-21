@@ -11,5 +11,6 @@ namespace RentApp.Persistance.Repository
     {
         IEnumerable<Branch> GetAll(int pageIndex, int pageSize);
         Service GetService(int serviceId);
+        Branch GetBranch(string branch);
     }
 }

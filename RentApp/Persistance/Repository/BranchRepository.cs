@@ -24,5 +24,10 @@ namespace RentApp.Persistance.Repository
         {
             return Context.Services.Find(serviceId);
         }
+
+        public Branch GetBranch(string branch)
+        {
+            return Context.Branches.Find(branch);
+        }
     }
 }

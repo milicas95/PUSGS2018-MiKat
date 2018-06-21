@@ -12,24 +12,244 @@ namespace RentApp.Controllers
 {
     public class UploadController : ApiController
     {
-        //[HttpPost]
-        //[Route("api/UploadImage")]
-        //public HttpResponseMessage UploadImage()
-        //{
-        //    string imageName = null;
-        //    var httpRequest = HttpContext.Current.Request;
-        //    var postedFile = httpRequest.Files["Image"];
+        [Route("api/postImage")]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> PostImage()
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
 
-        //    imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
-        //    imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
 
-        //    var filePath = HttpContext.Current.Server.MapPath("~/Content/Images/" + imageName);
-        //    postedFile.SaveAs(filePath);
-            
-        //    // service
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
 
+                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
 
-        //    return Request.CreateResponse(HttpStatusCode.Created);
-        //}
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png", ".img", ".jpeg" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png,.img,.jpeg.");
+
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, message);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, message);
+                        }
+                        else
+                        {
+                            var filePath = HttpContext.Current.Server.MapPath("/Content/Images/" + postedFile.FileName);
+                            postedFile.SaveAs(filePath);
+
+                            var message = string.Format("/Content/Images/" + postedFile.FileName);
+                            return Request.CreateResponse(HttpStatusCode.OK, message);
+                        }
+                    }
+
+                    var message1 = string.Format("Image Updated Successfully.");
+                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1);
+                }
+
+                var res = string.Format("Please Upload a image.");
+                return Request.CreateResponse(HttpStatusCode.NotFound, res);
+            }
+            catch (Exception)
+            {
+                var res = string.Format("some Message");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+        }
+
+        [Route("api/postUserImage")]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> PostUserImage()
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+
+                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png", ".img", ".jpeg" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png,.img,.jpeg.");
+
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, message);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, message);
+                        }
+                        else
+                        {
+                            var filePath = HttpContext.Current.Server.MapPath("/Content/Images/" + postedFile.FileName);
+                            postedFile.SaveAs(filePath);
+
+                            var message = string.Format("/Content/Images/" + postedFile.FileName);
+                            return Request.CreateResponse(HttpStatusCode.OK, message);
+                        }
+                    }
+
+                    var message1 = string.Format("Image Updated Successfully.");
+                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1);
+                }
+
+                var res = string.Format("Please Upload a image.");
+                return Request.CreateResponse(HttpStatusCode.NotFound, res);
+            }
+            catch (Exception)
+            {
+                var res = string.Format("some Message");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+        }
+
+        [Route("api/postVehicleImage")]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> PostVehicleImage()
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+
+                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png", ".img", ".jpeg" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png,.img,.jpeg.");
+
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, message);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, message);
+                        }
+                        else
+                        {
+                            var filePath = HttpContext.Current.Server.MapPath("/Content/Images/" + postedFile.FileName);
+                            postedFile.SaveAs(filePath);
+
+                            var message = string.Format("/Content/Images/" + postedFile.FileName);
+                            return Request.CreateResponse(HttpStatusCode.OK, message);
+                        }
+                    }
+
+                    var message1 = string.Format("Image Updated Successfully.");
+                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1);
+                }
+
+                var res = string.Format("Please Upload a image.");
+                return Request.CreateResponse(HttpStatusCode.NotFound, res);
+            }
+            catch (Exception)
+            {
+                var res = string.Format("some Message");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+        }
+
+        [Route("api/postBranchImage")]
+        [AllowAnonymous]
+        public async Task<HttpResponseMessage> PostBranchImage()
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+
+                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png", ".img", ".jpeg" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png,.img,.jpeg.");
+
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, message);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, message);
+                        }
+                        else
+                        {
+                            var filePath = HttpContext.Current.Server.MapPath("/Content/Images/" + postedFile.FileName);
+                            postedFile.SaveAs(filePath);
+
+                            var message = string.Format("/Content/Images/" + postedFile.FileName);
+                            return Request.CreateResponse(HttpStatusCode.OK, message);
+                        }
+                    }
+
+                    var message1 = string.Format("Image Updated Successfully.");
+                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1);
+                }
+
+                var res = string.Format("Please Upload a image.");
+                return Request.CreateResponse(HttpStatusCode.NotFound, res);
+            }
+            catch (Exception)
+            {
+                var res = string.Format("some Message");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+        }
     }
 }

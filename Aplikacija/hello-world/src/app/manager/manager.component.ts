@@ -8,9 +8,10 @@ import { ManagerService } from '../Services/manager.service';
 import { Vehicle } from '../Models/vehicle.model';
 import { ServiceDetailsComponent } from '../service-details/service-details.component';
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
-const URL='http://localhost:51680/api/PostUserImage';
+const URL='http://localhost:51680/api/postImage';
+const URL1='http://localhost:51680/api/postVehicleImage';
+const URL2='http://localhost:51680/api/postBranchImage';
 
 @Component({
   selector: 'app-manager',
@@ -27,11 +28,37 @@ export class ManagerComponent implements OnInit {
   private isVisible1 = true;
   private isVisible2 = true;
   
-  imageUrl:string="/assets/img/images.png";
-  fileToUpload:File=null;
+  public uploader:FileUploader;
+  public url:string;
+  public uploadFile:any;
+
+  public uploader1:FileUploader;
+  public url1:string;
+  public uploadFile1:any;
+
+  public uploader2:FileUploader;
+  public url2:string;
+  public uploadFile2:any;
 
   constructor(private service:ServiceService,private router:Router,private activated:ActivatedRoute) 
   { 
+    this.uploader=new FileUploader({url:URL,itemAlias:'Logo'});
+    this.uploader.onAfterAddingFile=(file)=>{file.withCredentials=false;};
+    this.uploader.onCompleteItem=(item:any,response:any,status:any,headers:any)=>{
+      this.url=JSON.parse(response);
+    }
+
+    this.uploader1=new FileUploader({url:URL1,itemAlias:'Photo'});
+    this.uploader1.onAfterAddingFile=(file)=>{file.withCredentials=false;};
+    this.uploader1.onCompleteItem=(item:any,response:any,status:any,headers:any)=>{
+      this.url1=JSON.parse(response);
+    }
+
+    this.uploader2=new FileUploader({url:URL2,itemAlias:'Logo'});
+    this.uploader2.onAfterAddingFile=(file)=>{file.withCredentials=false;};
+    this.uploader2.onCompleteItem=(item:any,response:any,status:any,headers:any)=>{
+      this.url2=JSON.parse(response);
+    }
   }    
 
   ngOnInit() {
@@ -39,18 +66,6 @@ export class ManagerComponent implements OnInit {
     this.vehicles=[];
     this.branches=[];
     this.callGet();
-  }
-
-  handleFileInput(file:FileList)
-  {
-    this.fileToUpload=file.item(0);
-
-    var reader=new FileReader();
-    reader.onload=(event:any)=>{
-      this.imageUrl=event.target.result;
-    }
-
-    reader.readAsDataURL(this.fileToUpload);
   }
 
   toggle():void {
@@ -82,12 +97,6 @@ export class ManagerComponent implements OnInit {
     )
   }
 
-  addImage(Logo)
-  {
-    debugger
-    this.service.postImageMethod(Logo);
-  }
-
   callGet()
   {
     this.service.getMethod()
@@ -104,7 +113,7 @@ export class ManagerComponent implements OnInit {
 
   addService(model:Service,form:NgForm)
   {
-    debugger
+    model.Logo=this.url;
     this.service.postMethod(model);
     console.log(model);
     form.reset();
@@ -112,6 +121,7 @@ export class ManagerComponent implements OnInit {
 
   addVehicles(model:Vehicle,form:NgForm)
   {
+    model.Photo=this.url1;
     model.Service=this.selectedService;
     this.service.postVehiclesMethod(model);
     console.log(model);
@@ -120,36 +130,24 @@ export class ManagerComponent implements OnInit {
 
   addBranches(model:Branch,form:NgForm)
   {
-    debugger
+    model.Logo=this.url2;
     model.Service=this.selectedService;
     this.service.postBranchesMethod(model);
     console.log(model);
     form.reset();
   }
 
-  deleteVehicle()
+  deleteVehicle(vehicle:Vehicle)
   {
-    this.service.deleteVehiclesMethod(this.selectedService.Id);
+    debugger
+    this.service.deleteVehiclesMethod(vehicle.Id);
     console.log("Vehicle has been deleted");
   }
 
-  deleteBranch()
+  deleteBranch(branch:Branch)
   {
     debugger
-    this.service.deleteBranchesMethod(this.selectedService.Id);
+    this.service.deleteBranchesMethod(branch.Id);
     console.log("Branch has been deleted");
-  }
-
-  onSelectFile(event:any) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-
-      reader.onload = (event:any) => { // called once readAsDataURL is completed
-        //this.url = event.target.result;
-      }
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-    }
   }
 }

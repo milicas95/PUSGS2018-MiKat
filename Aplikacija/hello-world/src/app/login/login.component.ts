@@ -11,10 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
-
   private clicked=false;
-   private loginUser:User;
-   private loginService:LoginService
+  private loginUser:User;
+  private loginService:LoginService;
 
   constructor(private service:LoginService) 
   {   
@@ -31,7 +30,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit(user:User,form:NgForm)
   {
-    debugger
     this.loginService.getToken(user);
     form.reset();
   }

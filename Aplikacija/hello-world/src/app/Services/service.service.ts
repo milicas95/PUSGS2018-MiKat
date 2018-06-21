@@ -27,20 +27,7 @@ export class ServiceService {
       err => {} // Reach here if fails
     );
   }
-
-  postImageMethod(fileToUpload:File)
-  {
-    debugger
-    const endpoint='http://localhost:51680/api/UploadImage';
-    const formData:FormData=new FormData();
-    formData.append('Logo',fileToUpload,fileToUpload.name);
-    return this.http.post('http://localhost:51680/api/UploadImage',formData)
-    .subscribe(
-      data=>{debugger},
-      err=>{debugger}
-    );
-  }
-
+  
   deleteMethod(id:number):void
   {
     this.http.delete('http://localhost:51680/api/services/' + id)

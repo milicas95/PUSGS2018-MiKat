@@ -12,6 +12,8 @@ namespace RentApp.Persistance.Repository
     {
         IEnumerable<Vehicle> GetVehiclesForService(int serviceId);
         Service GetService(int serviceId);
+
+        Vehicle GetVehicle(int id);
         IEnumerable<Vehicle> GetByPrice(decimal price);
     }
 }

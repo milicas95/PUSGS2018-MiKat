@@ -82,7 +82,7 @@ export class ReservationComponent implements OnInit {
     //        this.endBranch=data;
     //        res.BeginBranch=this.startBranch;
     //        res.EndBranch=this.endBranch;
-    //        this.service.Reserve(res);
+            this.service.Reserve(res);
     //      }
     //    );
     //  }

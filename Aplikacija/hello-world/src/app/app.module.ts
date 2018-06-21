@@ -21,6 +21,7 @@ import { LogoutComponent } from '../app/logout/logout.component';
 import { ManagerComponent } from '../app/manager/manager.component';
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
 import { PasswordComponent } from './password/password.component';
+import { FileSelectDirective } from 'ng2-file-upload';
 import { ClientComponent } from './client/client.component';
 import { HomeComponent } from './home/home.component';
 
@@ -55,6 +56,8 @@ const routes: Routes = [
     PasswordComponent,
     ClientComponent,
     HomeComponent
+    PasswordComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,7 @@ const routes: Routes = [
     {
       provide:'CanAlwaysActivateGuard',
       useValue:()=>{ return true; }
-    },
+    }
   ],
   bootstrap: [AppComponent]
 })

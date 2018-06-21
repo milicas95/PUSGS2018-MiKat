@@ -91,7 +91,9 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            vehicle.Service = unitOfWork.Vehicles.GetService(vehicle.Service.Id);
+            Service service = unitOfWork.Vehicles.GetService(vehicle.Service.Id);
+            //service.Vehicles.Add(vehicle);
+            vehicle.Service = service;
             unitOfWork.Vehicles.Add(vehicle);
             unitOfWork.Complete();
 
@@ -102,10 +104,36 @@ namespace RentApp.Controllers
         [ResponseType(typeof(Vehicle))]
         public IHttpActionResult DeleteVehicle(int id)
         {
+            //var rents = unitOfWork.Rents.GetAll(id);
+            //rents = rents.OrderBy(r => r.Start);
+
+            //foreach(Rent r in rents)
+            //{
+            //    if (r.Start <= DateTime.Now && r.End >= DateTime.Now)
+            //        return BadRequest("Vehicle still in use!");
+            //}
+
+            //foreach(Rent r in rents)
+            //{
+            //    foreach(AppUser user in unitOfWork.Users.GetAll())
+            //    {
+            //        if (user.Rents.Remove(r))
+            //            break;
+            //    }
+
+            //    unitOfWork.Rents.Remove(r);
+            //}
+
             Vehicle vehicle = unitOfWork.Vehicles.Get(id);
             if (vehicle == null)
             {
                 return NotFound();
+            }
+
+            foreach(Service s in unitOfWork.Services.GetAll())
+            {
+                if (s.Vehicles.Remove(vehicle))
+                    break;
             }
 
             unitOfWork.Vehicles.Remove(vehicle);

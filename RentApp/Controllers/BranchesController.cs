@@ -85,7 +85,9 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            branch.Service = unitOfWork.Branches.GetService(branch.Service.Id);
+            Service service = unitOfWork.Branches.GetService(branch.Service.Id);
+            //service.Branches.Add(branch);
+            branch.Service = service;
             unitOfWork.Branches.Add(branch);
             unitOfWork.Complete();
 
@@ -96,10 +98,35 @@ namespace RentApp.Controllers
         [ResponseType(typeof(Branch))]
         public IHttpActionResult DeleteBranch(int id)
         {
+            //var rents = unitOfWork.Rents.GetAll();
+
+            //foreach(Rent r in rents)
+            //{
+            //    Branch b=unitOfWork.Branches.GetBranch(r.BeginBranch);
+            //    Branch b1 = unitOfWork.Branches.GetBranch(r.EndBranch);
+
+            //    if (b.Id == id || b1.Id == id)
+            //        return BadRequest("Branch is in use!");
+
+            //    foreach(AppUser user in unitOfWork.Users.GetAll())
+            //    {
+            //        if (user.Rents.Remove(r))
+            //            break;
+            //    }
+
+            //    unitOfWork.Rents.Remove(r);
+            //}
+
             Branch branch = unitOfWork.Branches.Get(id);
             if (branch == null)
             {
                 return NotFound();
+            }
+
+            foreach(Service s in unitOfWork.Services.GetAll())
+            {
+                if (s.Branches.Remove(branch))
+                    break;
             }
 
             unitOfWork.Branches.Remove(branch);

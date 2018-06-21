@@ -11,6 +11,6 @@ export class User
     Password:string;
     Birthday:Data;
     Rents:Reservation[];
-    Photo:string;
+    PersonalDocument:string;
     Confirmation:string;
 }
