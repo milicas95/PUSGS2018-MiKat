@@ -16,3 +16,4 @@ export class AppUserComponent implements OnInit {
     this.router.navigate(['/profile']);
   }
 }
+

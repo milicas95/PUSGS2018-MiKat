@@ -7,7 +7,7 @@ export class Reservation {
     Id: number;
     Start: Data;
     End: Data;
-    Used: boolean;
+    Used: boolean;      // da li se zavrsila rezervacija
     User: User;
     BeginBranch: string;
     EndBranch: string;

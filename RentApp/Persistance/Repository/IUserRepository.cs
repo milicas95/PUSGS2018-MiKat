@@ -14,5 +14,8 @@ namespace RentApp.Persistance.Repository
         IEnumerable<Rent> GetRents(int userId);
         void DeleteRents(int userId);
         AppUser GetUserInfo(string email);
+        IEnumerable<AppUser> GetAll();
+        IEnumerable<AppUser> GetManagers();
+        AppUser Get(AppUser user);
     }
 }

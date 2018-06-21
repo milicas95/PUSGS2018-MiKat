@@ -14,4 +14,5 @@ export class User
     PersonalDocument:string;
     Confirmation:string;
     Role:boolean;
+    Activated:boolean;
 }

@@ -47,7 +47,7 @@ namespace RentApp.Controllers
 
         // GET: api/Rents/5
         [ResponseType(typeof(Rent))]
-        public IHttpActionResult GetRent(int id)
+        public IHttpActionResult GetRent(int id)    // email 
         {
             Rent rent = unitOfWork.Rents.Get(id);
             if (rent == null)

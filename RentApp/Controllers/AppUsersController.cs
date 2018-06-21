@@ -31,6 +31,88 @@ namespace RentApp.Controllers
             return unitOfWork.Users.GetAll();
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        [Route("GetManagers")]
+        public IEnumerable<AppUser> GetManagers()
+        {
+            return unitOfWork.Users.GetManagers();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        [Route("GetServices")]
+        public IEnumerable<Service> GetServices()
+        {
+            return unitOfWork.Services.GetDeactiveServices();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [Route("ConfirmUser")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult ConfirmUser(AppUser user)
+        {
+            AppUser u = unitOfWork.Users.Get(user);
+
+            if(u.PersonalDocument==null)
+                return BadRequest("User can't be approved");
+
+            u.Activated = true;
+            unitOfWork.Complete();
+
+            return Ok();    
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [Route("BanManager")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult BanManager(AppUser user)
+        {
+            AppUser u = unitOfWork.Users.Get(user);
+
+            if (!u.Manage)
+                return BadRequest("Manager is already banned");
+
+            u.Manage = false;
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [Route("ApproveService")]
+        public IHttpActionResult ApproveService(Service service)
+        {
+            Service s = unitOfWork.Services.Get(service.Id);
+
+            if (s.Activated)
+                return BadRequest("Service is already approved");
+
+            s.Activated = true;
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("GiveComment")]
+        public IHttpActionResult GiveComment(Comment comment)
+        {
+            Service service = unitOfWork.Services.Get(comment.Service.Id);
+            AppUser user = unitOfWork.Users.Get(comment.User.Id);
+
+            //service.Comments.Add(comment);
+            comment.Service = service;
+            comment.User = user;
+            unitOfWork.Comments.Add(comment);
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
         // GET: api/AppUsers/5
         [ResponseType(typeof(AppUser))]
         [Route("api/UserInfo")]

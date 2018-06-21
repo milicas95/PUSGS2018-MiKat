@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
   private profileService:ProfileService;
   private rentsList:Reservation[];
   public user:User;
+  private confirmedUser:boolean;
   
   public uploader:FileUploader;
   public url:string;
@@ -61,6 +62,7 @@ export class ProfileComponent implements OnInit {
       data=>
       {
         this.user = data;
+        this.confirmedUser=this.user.Activated;        
       },
       error=>
       {
