@@ -47,7 +47,7 @@
                       <div>{{vehicle.Year}}</div>
                       <div>{{vehicle.Available}}</div>
                       <div class="alert alert-success box-msg">
-                          <button class="button1" (click)="toggle(vehicle)">Reserve</button>
+                          <button class="button1" (click)="toggle(vehicle)" [disabled]="vehicle.Unavailable">Reserve</button>
                         </div>
                   </div>
                 </div>

@@ -7,6 +7,8 @@ import { User } from '../Models/user.model';
 import { ProfileService } from '../Services/profile.service';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { Reservation } from 'src/app/Models/reservation.model';
+import { FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+const URL='http://localhost:51680/api/postUserImage';
 
 @Component({
   selector: 'app-profile',
@@ -22,17 +24,24 @@ import { Reservation } from 'src/app/Models/reservation.model';
   ProfileService]
 })
 export class ProfileComponent implements OnInit {
-  debugger
-  private url:string;
   private clicked=false;
   private profileService:ProfileService;
   private rentsList:Reservation[];
   public user:User;
+  
+  public uploader:FileUploader;
+  public url:string;
+  public uploadFile:any;
 
   constructor(private service:ProfileService, private router:Router) 
   { 
     this.profileService=service;
     this.rentsList=[];
+    this.uploader=new FileUploader({url:URL,itemAlias:'PersonalDocument'});
+    this.uploader.onAfterAddingFile=(file)=>{file.withCredentials=false;};
+    this.uploader.onCompleteItem=(item:any,response:any,status:any,headers:any)=>{
+      this.url=JSON.parse(response);
+    }
   }
 
   ngOnInit() {
@@ -77,6 +86,7 @@ export class ProfileComponent implements OnInit {
     this.user.Email = model.Email;
     if(model.Birthday != null)
     this.user.Birthday = model.Birthday;
+    this.user.PersonalDocument=this.url;
     this.profileService.updateUser(this.user);
     // this.url=model;
     // this.profileService.upload(model);

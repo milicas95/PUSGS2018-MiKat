@@ -7,4 +7,5 @@ export class Branch {
     Latitude: string;
     Longtitude: string;
     Service: Service;
+    Logo:string;
 }

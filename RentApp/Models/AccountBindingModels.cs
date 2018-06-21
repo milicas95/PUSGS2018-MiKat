@@ -61,6 +61,9 @@ namespace RentApp.Models
         [Display(Name ="Birthday")]
         public DateTime Birthday { get; set; }
 
+        [Display(Name ="PersonalDocument")]
+        public string PersonalDocument { get; set; }
+
         //[Required]
         //[Display(Name = "Role")]
         //public bool Role { get; set; }

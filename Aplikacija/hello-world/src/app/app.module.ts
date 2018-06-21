@@ -21,6 +21,7 @@ import { LogoutComponent } from '../app/logout/logout.component';
 import { ManagerComponent } from '../app/manager/manager.component';
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
 import { PasswordComponent } from './password/password.component';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 const routes: Routes = [
   { path: '', component: ServiceComponent },
@@ -48,7 +49,8 @@ const routes: Routes = [
     LogoutComponent,
     ManagerComponent,
     VehicleDetailsComponent,
-    PasswordComponent
+    PasswordComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

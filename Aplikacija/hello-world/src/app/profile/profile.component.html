@@ -35,27 +35,11 @@
         <input type="submit" value="Change profile">
       </form>
       <button (click)="changePassword()">Change password</button>
-
-
-  <!-- <div>
-    <div>Full name: {{user.FullName}} </div>
-    <div>Email: {{user.Email}}</div>
-    <div>
-        <label for="Birthday">Date of birth</label>
-        <input type="date" name="Birthday" [value]="user.Birthday | date : 'yyyy-MM-dd' ">
-    </div>
-  </div>  -->
-
-  <!-- <button (click)="toggle()">Upload photo</button>
-    <div *ngIf="clicked">
-        <form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
-            <div>
-              <label for="Photo">Photo</label>
-              <input type="text" name="Photo" ngModel>
-            </div>
-            <input type="submit">
-          </form>
-     </div>  -->
+      <form #form="ngForm"> 
+        <label for="PersonalDocument">Personal document</label>
+        <input type="file" multiple name="PersonalDocument" ng2FileSelect [uploader]="uploader" enctype="multipart/form-data"/>
+        <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload document</button> 
+      </form>
 
      <!-- <div>
         <li *ngFor="let rent of rentsList">
