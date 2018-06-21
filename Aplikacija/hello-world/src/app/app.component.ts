@@ -8,6 +8,12 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent {
-  constructor(private router:Router) { }
   title = 'Rent a car';
+
+  constructor(private router:Router) 
+  {
+    localStorage.clear();
+    localStorage.setItem("role","null");
+   }
+  
 }

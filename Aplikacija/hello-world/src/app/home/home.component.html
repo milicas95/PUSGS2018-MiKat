@@ -1,0 +1,16 @@
+
+<div *ngIf = "isAdmin()">
+    <app-client></app-client>
+</div> 
+
+<div *ngIf = "isManager()">
+    <app-manager></app-manager>
+</div>
+
+<div *ngIf = "isAppUser()">
+    <app-app-user></app-app-user>
+</div>
+
+<div *ngIf = "isntLoggedOn()">
+    <app-client></app-client>
+</div> 

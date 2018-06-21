@@ -21,6 +21,8 @@ import { LogoutComponent } from '../app/logout/logout.component';
 import { ManagerComponent } from '../app/manager/manager.component';
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
 import { PasswordComponent } from './password/password.component';
+import { ClientComponent } from './client/client.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: '', component: ServiceComponent },
@@ -32,7 +34,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'manager', component: ManagerComponent },
-  { path: 'password', component:PasswordComponent}
+  { path: 'password', component:PasswordComponent},
+  { path: 'home', component:HomeComponent},
+  { path: 'client', component:ClientComponent}
 ];
 @NgModule({
   declarations: [
@@ -48,7 +52,9 @@ const routes: Routes = [
     LogoutComponent,
     ManagerComponent,
     VehicleDetailsComponent,
-    PasswordComponent
+    PasswordComponent,
+    ClientComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,7 @@ const routes: Routes = [
     {
       provide:'CanAlwaysActivateGuard',
       useValue:()=>{ return true; }
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

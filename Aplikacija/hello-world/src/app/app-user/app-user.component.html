@@ -1,21 +1,26 @@
 <ul>
-  <li><a><i></i></a></li>
-  <li><a><i></i></a></li>
-        <li>
-            <a [routerLink]="['/reservation']">
-              <i>Make a reservation</i>
-            </a>
-          </li>
+    <li>
+      <i style="display: block;
+      color: white;
+      text-align: center;
+      font-size: 18px;
+      padding: 14px 16px;
+      text-decoration: none;">RentACar</i>
+    </li>
       <li>
-        <a [routerLink]="['/profile']">
-          <i>Profile</i>
+          <a [routerLink]="['/reservation']">
+            <i>Home</i>
+          </a>
+        </li>
+      <li>
+        <a [routerLink]="['/logout']">
+          <i>Log out</i>
         </a>
       </li>
       <li>
-          <a [routerLink]="['/logout']">
-            <i>Log out</i>
+          <a [routerLink]="['/profile']">
+            <i>Profile</i>
           </a>
         </li>
     </ul>
-
-    <router-outlet></router-outlet>
+    

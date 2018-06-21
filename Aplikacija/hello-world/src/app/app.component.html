@@ -1,18 +1,5 @@
-<ul>
-    <li>
-        <a [routerLink]="['/service']">
-          <i>Services</i>
-        </a>
-      </li>
-    <li>
-      <a [routerLink]="['/login']">
-        <i>Login</i>
-      </a>
-    </li>
-    <li>
-        <a [routerLink]="['/register']">
-          <i>Register</i>
-        </a>
-      </li>
-  </ul>
-  <router-outlet></router-outlet>
+<app-home></app-home>
+
+<div id="content">
+    <router-outlet></router-outlet>
+</div>

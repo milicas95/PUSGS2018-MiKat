@@ -11,14 +11,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class LogoutComponent implements OnInit {
   private loginService:LoginService
   
-  constructor(private service:LoginService) 
+  constructor(private service:LoginService, private router:Router) 
   { 
     this.loginService=service;
   }
 
   ngOnInit() {
-    debugger
     this.loginService.logout();
+    this.router.navigate(['/service']);
   }
 
 }

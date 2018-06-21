@@ -1,24 +1,3 @@
-<ul>
-    <li><a><i></i></a></li>
-    <li><a><i></i></a></li>
-          <li>
-              <a [routerLink]="['/reservation']">
-                <i>Make a reservation</i>
-              </a>
-            </li>
-        <li>
-          <a [routerLink]="['/profile']">
-            <i>Profile</i>
-          </a>
-        </li>
-        <li>
-            <a [routerLink]="['/service']">
-              <i>Log out</i>
-            </a>
-          </li>
-      </ul>
-  
-      <router-outlet></router-outlet>
 
       <div class="cards">
           <div *ngFor="let service of serviceList" [class.selected]="service === selectedService"

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoginService } from '../Services/login.service';
 import { User } from '../Models/user.model';
 
 @Component({
@@ -12,7 +13,6 @@ export class AppUserComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    
+    this.router.navigate(['/profile']);
   }
-
 }
