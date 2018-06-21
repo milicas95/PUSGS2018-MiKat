@@ -130,12 +130,6 @@ namespace RentApp.Controllers
                 return NotFound();
             }
 
-            foreach(Service s in unitOfWork.Services.GetAll())
-            {
-                if (s.Vehicles.Remove(vehicle))
-                    break;
-            }
-
             unitOfWork.Vehicles.Remove(vehicle);
             unitOfWork.Complete();
 

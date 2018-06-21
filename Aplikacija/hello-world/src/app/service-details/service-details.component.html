@@ -1,12 +1,19 @@
 <div class="center" *ngIf="service">
-  <div>
-    <h2>{{service.Name | uppercase}}</h2>
-    <!-- <div>Logo: {{service.Logo}}</div> -->
-    <div>Email: {{service.Email}}</div>
-    <div>Description: {{service.Description}}</div>
-  </div>
-  <div *ngIf="buttonDisabled" class="alert alert-success box-msg">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
+        <div>
+          <label for="Name">Name:</label>
+          <input type="text" name="Name" placeholder="{{service.Name}}" ngModel>
+        </div>        
+        <div>
+            <label for="Email">Email:</label>
+            <input type="text" name="Email" placeholder="{{service.Email}}" ngModel>
+          </div>
+          <div>
+              <label for="Description">Description:</label>
+              <input type="text" name="Description" placeholder="{{service.Description}}" ngModel>
+            </div>
+        <input type="submit" value="Update service">
+      </form>
       <button (click)="deleteService()">Delete service</button>
-    </div>
 </div>
 

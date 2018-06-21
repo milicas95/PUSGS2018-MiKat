@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
 
   isntLoggedOn()
   {
-    debugger
       return SessionService.isntLoggedOn();
   }
 
@@ -36,7 +35,6 @@ export class HomeComponent implements OnInit {
 
   isAppUser()
   {
-    debugger
     return SessionService.isAppUser();
   }
 }

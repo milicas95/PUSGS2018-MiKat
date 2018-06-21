@@ -123,12 +123,6 @@ namespace RentApp.Controllers
                 return NotFound();
             }
 
-            foreach(Service s in unitOfWork.Services.GetAll())
-            {
-                if (s.Branches.Remove(branch))
-                    break;
-            }
-
             unitOfWork.Branches.Remove(branch);
             unitOfWork.Complete();
 

@@ -1,22 +1,3 @@
-<!-- <ul>
-        <li>
-            <a [routerLink]="['/reservation']">
-              <i>Make a reservation</i>
-            </a>
-          </li>
-      <li>
-        <a [routerLink]="['/profile']">
-          <i>Profile</i>
-        </a>
-      </li>
-      <li>
-          <a [routerLink]="['/logout']">
-            <i>Log out</i>
-          </a>
-        </li>
-    </ul> -->
-
-  <!-- <router-outlet></router-outlet> -->
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
         <div>
           <label for="FullName">Full name:</label>
@@ -38,10 +19,3 @@
         <input type="file" multiple name="PersonalDocument" ng2FileSelect [uploader]="uploader" enctype="multipart/form-data"/>
         <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload document</button> 
       </form>
-
-     <!-- <div>
-        <li *ngFor="let rent of rentsList">
-          <span class="badge">{{rent.ReservationID}}</span>
-        </li>
-      </div> -->
-      

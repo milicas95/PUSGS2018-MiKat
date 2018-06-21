@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../Services/register.service';
 import { User } from '../Models/user.model';
 import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit {
   private registerUser:User;
   private registerService:RegisterService;
 
-  constructor(private service:RegisterService) 
+  constructor(private service:RegisterService, private router: Router) 
   { 
     this.registerService=service;
   }
@@ -73,7 +74,9 @@ export class RegisterComponent implements OnInit {
     && this.passwordLength==false && this.samePassword==false)
     {
     this.registerService.postMethod(user); 
+    this.router.navigate(['/login']);
     form.reset();
+    
     }
   }
 }

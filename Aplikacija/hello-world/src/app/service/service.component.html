@@ -19,8 +19,13 @@
 </ul>
 
 
-<div>
-  <app-service-details [service]="selectedService"></app-service-details>
+<div class="center" *ngIf="selectedService">
+    <div>
+        <h2>{{selectedService.Name | uppercase}}</h2>
+        <div>Email: {{selectedService.Email}}</div>
+        <div>Description: {{selectedService.Description}}</div>
+    </div>
+ 
 </div>
 
 <div class="center" *ngIf="selectedService">

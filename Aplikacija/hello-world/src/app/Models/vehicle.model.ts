@@ -10,4 +10,5 @@ export class Vehicle {
     Unavailable: boolean;
     Service: Service;
     ServiceID: string;
+    PricePerHour:string;
 }

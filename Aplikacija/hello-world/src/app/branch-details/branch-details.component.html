@@ -1,0 +1,16 @@
+<div *ngIf="branch">   
+            <div>
+              <label for="Address">Address:</label>{{branch.Address}}
+              <!-- <div>{{branch.Address}}</div> -->
+            </div>        
+            <div>
+              <label for="Latitude">Latitude:</label>{{branch.Latitude}}
+              <!-- <div>{{branch.Latitude}}</div> -->
+            </div>
+            <div>
+              <label for="Longitude">Longitude:</label>{{branch.Longitude}}
+              <!-- <div>{{branch.Longitude}}</div> -->
+            </div>
+    <button class="button1" (click)="deleteBranch()">Delete branch</button>
+</div>
+

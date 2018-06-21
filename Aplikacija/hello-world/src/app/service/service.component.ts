@@ -52,7 +52,7 @@ export class ServiceComponent implements OnInit
   onSelect(s:Service):void
   {
     this.vehicles=[];
-    this.serviceService.getVehiclesMethod(s.Id)
+    this.serviceService.getService(s.Id)
     .subscribe(
       data=>{
       this.selectedService=data;

@@ -24,6 +24,8 @@ import { PasswordComponent } from './password/password.component';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { ClientComponent } from './client/client.component';
 import { HomeComponent } from './home/home.component';
+import { ManageServiceComponent } from './manage-service/manage-service.component';
+import { BranchDetailsComponent } from './branch-details/branch-details.component';
 
 const routes: Routes = [
   { path: '', component: ServiceComponent },
@@ -34,10 +36,10 @@ const routes: Routes = [
   { path: 'reservation', component: ReservationComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'manager', component: ManagerComponent },
   { path: 'password', component:PasswordComponent},
   { path: 'home', component:HomeComponent},
-  { path: 'client', component:ClientComponent}
+  { path: 'client', component:ClientComponent},
+  { path: 'manager', component:ManageServiceComponent}
 ];
 @NgModule({
   declarations: [
@@ -55,9 +57,11 @@ const routes: Routes = [
     VehicleDetailsComponent,
     PasswordComponent,
     ClientComponent,
-    HomeComponent
+    HomeComponent,
     PasswordComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    ManageServiceComponent,
+    BranchDetailsComponent
   ],
   imports: [
     BrowserModule,

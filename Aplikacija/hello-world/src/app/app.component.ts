@@ -12,8 +12,6 @@ export class AppComponent {
 
   constructor(private router:Router) 
   {
-    localStorage.clear();
-    localStorage.setItem("role","null");
    }
   
 }

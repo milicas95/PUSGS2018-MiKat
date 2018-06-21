@@ -33,6 +33,10 @@
         </div>
         <div *ngIf="requierdConfirmation" style="color:red">Confirmation of password is required</div>
         <div *ngIf="samePassword" style="color:red">Confirmation is different than password</div>
+        <div>
+          <label for="Role">Want to register a service?</label>
+          <input type="checkbox" name="Role" ngModel>
+        </div>
         <input type="submit">
       </form>
  <!--   </div>-->

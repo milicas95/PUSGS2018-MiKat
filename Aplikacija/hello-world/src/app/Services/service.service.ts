@@ -7,11 +7,14 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Service } from '../Models/service.model';
 import { debug } from 'util';
+import { Vehicle } from 'src/app/Models/vehicle.model';
+import { Branch } from 'src/app/Models/branch.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class ServiceService {
 
-  constructor(private http:HttpClient ) { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   getMethod():Observable<any>
   {
@@ -23,7 +26,7 @@ export class ServiceService {
   {
     this.http.post("http://localhost:51680/api/services",newMember)
     .subscribe(
-      data => {}, // Reach here if res.status >= 200 && <= 299
+      data => { this.router.navigate(['/manager']) }, // Reach here if res.status >= 200 && <= 299
       err => {} // Reach here if fails
     );
   }
@@ -32,12 +35,12 @@ export class ServiceService {
   {
     this.http.delete('http://localhost:51680/api/services/' + id)
     .subscribe(
-      data=>{},
+      data=>{this.router.navigate(['/manager'])},
       err=>{}
     );
   }
 
-  getVehiclesMethod(id:number):Observable<any>
+  getService(id:number):Observable<any>
   {
     return this.http.get('http://localhost:51680/api/services/' + id);
   }
@@ -46,7 +49,7 @@ export class ServiceService {
   {
     this.http.post("http://localhost:51680/api/Vehicles",newMember)
     .subscribe(
-      data => {}, // Reach here if res.status >= 200 && <= 299
+      data => { this.router.navigate(['/manager']) }, // Reach here if res.status >= 200 && <= 299
       err => {} // Reach here if fails
     );
   }
@@ -55,9 +58,14 @@ export class ServiceService {
   {
     this.http.delete('http://localhost:51680/api/Vehicles/' + id)
     .subscribe(
-      data=>{},
+      data=>{ this.router.navigate(['/manager']) },
       err=>{}
     );
+  }
+
+  getVehiclesMethod(id:number):Observable<any>
+  {
+      return this.http.get('http://localhost:51680/api/Vehicles/' + id);
   }
 
   getBranchesMethod(id:number):Observable<any>
@@ -69,7 +77,7 @@ export class ServiceService {
   {
     this.http.post("http://localhost:51680/api/Branches",newMember)
     .subscribe(
-      (data)=>{},
+      (data)=>{ this.router.navigate(['/manager']) },
       (err)=>{}
     );
   }
@@ -78,8 +86,26 @@ export class ServiceService {
   {
     this.http.delete('http://localhost:51680/api/Branches/' + id)
     .subscribe(
-      data=>{},
+      data=>{ this.router.navigate(['/manager']) },
       err=>{}
+    );
+  }
+
+  updateService(service:Service)
+  {
+    this.http.put("http://localhost:51680/api/services/"+service.Id, service)
+    .subscribe(
+      data=>{console.log(data)},
+      err=>{console.log(err)}
+    );
+  }
+
+  updateVehicle(vehicle:Vehicle)
+  {
+    this.http.put("http://localhost:51680/api/vehicles/"+vehicle.Id, vehicle)
+    .subscribe(
+      data=>{console.log(data)},
+      err=>{console.log(err)}
     );
   }
 }

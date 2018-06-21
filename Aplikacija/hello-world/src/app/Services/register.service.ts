@@ -13,6 +13,7 @@ export class RegisterService {
 
   postMethod(newMember):void
   {
+    debugger
     this.http.post("http://localhost:51680/api/Account/Register",newMember)
     .subscribe(
       (data) => {debugger}, // Reach here if res.status >= 200 && <= 299

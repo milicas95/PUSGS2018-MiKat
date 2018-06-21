@@ -64,9 +64,8 @@ namespace RentApp.Models
         [Display(Name ="PersonalDocument")]
         public string PersonalDocument { get; set; }
 
-        //[Required]
-        //[Display(Name = "Role")]
-        //public bool Role { get; set; }
+        [Display(Name = "Role")]
+        public bool Role { get; set; }
     }
 
     public class RegisterExternalBindingModel

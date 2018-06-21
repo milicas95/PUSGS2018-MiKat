@@ -13,4 +13,5 @@ export class User
     Rents:Reservation[];
     PersonalDocument:string;
     Confirmation:string;
+    Role:boolean;
 }

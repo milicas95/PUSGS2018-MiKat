@@ -1,12 +1,28 @@
-<div class="center" *ngIf="selectedService">
-  <div>
-    <li *ngFor="let vehicle of vehicles">
-      <div>{{vehicle.Model}}</div>
-      <div>{{vehicle.Manufactor}}</div>
-      <div>{{vehicle.Year}}</div>
-    </li>
-  </div>
-  <div *ngIf="buttonDisabled" class="alert alert-success box-msg">
-      <button (click)="deleteVehicle()">Delete vehicle</button>
-  </div>
-</div>
+
+        <div *ngIf="vehicle">   
+            <form #f="ngForm" (ngSubmit)="onSubmit(f.value,f)">
+                    <div>
+                      <label for="Model">Model:</label>
+                      <input type="text" name="Model" placeholder="{{vehicle.Model}}" ngModel>
+                    </div>        
+                    <div>
+                        <label for="Manufactor">Manufactor:</label>
+                        <input type="text" name="Manufactor" placeholder="{{vehicle.Manufactor}}" ngModel>
+                    </div>
+                    <div>
+                        <label for="Year">Year:</label>
+                        <input type="text" name="Year" placeholder="{{vehicle.Year}}" ngModel>
+                    </div>
+                    <div>
+                        <label for="Description">Description:</label>
+                        <input type="text" name="Description" placeholder="{{vehicle.Description}}" ngModel>
+                    </div>
+                    <div>
+                        <label for="PricePerHour">Price per hour:</label>
+                        <input type="text" name="PricePerHour" placeholder="{{vehicle.PricePerHour}}" ngModel>
+                    </div>
+                    <input type="submit" value="Update vehicle">
+            </form>
+            <button class="button1" (click)="deleteVehicle()">Delete vehicle</button>
+        </div>
+        
