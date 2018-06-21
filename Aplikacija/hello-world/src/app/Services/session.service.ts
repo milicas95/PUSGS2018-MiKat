@@ -22,7 +22,7 @@ export class SessionService {
 
   public static isntLoggedOn():boolean
   {
-      debugger
+      //debugger
       return localStorage.role == "null";
   }
 }

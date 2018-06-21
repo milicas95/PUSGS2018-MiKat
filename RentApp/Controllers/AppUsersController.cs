@@ -31,6 +31,45 @@ namespace RentApp.Controllers
             return unitOfWork.Users.GetAll();
         }
 
+        [HttpGet]
+        [Route("GetManagers")]
+        public IEnumerable<AppUser> GetManagers()
+        {
+            return unitOfWork.Users.GetManagers();
+        }
+
+        [HttpPost]
+        [Route("ConfirmUser")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult ConfirmUser(AppUser user)
+        {
+            AppUser u = unitOfWork.Users.Get(user);
+
+            if(u.PersonalDocument==null)
+                return BadRequest("User can't be approved");
+
+            u.Activated = true;
+            unitOfWork.Complete();
+
+            return Ok();    
+        }
+
+        [HttpPost]
+        [Route("BanManager")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult BanManager(AppUser user)
+        {
+            AppUser u = unitOfWork.Users.Get(user);
+
+            if (!u.Manage)
+                return BadRequest("Manager is already banned");
+
+            u.Manage = false;
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
         // GET: api/AppUsers/5
         [ResponseType(typeof(AppUser))]
         [Route("api/UserInfo")]

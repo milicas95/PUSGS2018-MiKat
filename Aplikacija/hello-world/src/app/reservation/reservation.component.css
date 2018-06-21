@@ -193,6 +193,12 @@ ul {
     background-color: #DDD;
     left: .1em;
   }
+
+  disabled{
+    color: rgb(49, 57, 61);
+    background-color: #DDD;
+    left: .1em;
+  }
   
   .button1 {
     background-color: #50c6db;

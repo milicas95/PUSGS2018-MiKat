@@ -21,9 +21,10 @@ namespace RentApp.Persistance.Repository
             return context.Set<AppUser>().FirstOrDefault(predicate);
         }
 
-        public IEnumerable<AppUser> GetAll(int pageIndex, int pageSize)
+        public IEnumerable<AppUser> GetAll()
         {
-            throw new NotImplementedException();
+            var users = Context.AppUsers.Where(x=>x.Activated==false);  // neodobreni
+            return users.Where(x => x.Manage == false);
         }
 
         public IEnumerable<Rent> GetRents(int userId)
@@ -46,6 +47,21 @@ namespace RentApp.Persistance.Repository
         {
             RAIdentityUser user = Context.Users.Where(u => u.UserName == userName).FirstOrDefault();
             return Context.AppUsers.Where(u => u.Email == user.Email).FirstOrDefault();
+        }
+
+        public IEnumerable<AppUser> GetAll(int pageIndex, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AppUser Get(AppUser user)
+        {
+            return Context.AppUsers.Where(x => x.Id == user.Id).FirstOrDefault();
+        }
+
+        public IEnumerable<AppUser> GetManagers()
+        {
+            return Context.AppUsers.Where(x => x.Manage == true);
         }
     }
 }

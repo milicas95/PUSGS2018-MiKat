@@ -21,6 +21,16 @@ export class ProfileService {
 
     }
 
+    getUsers():Observable<any>
+    {
+      return this.http.get("http://localhost:51680/api/AppUsers");
+    }
+
+    getManagers():Observable<any>
+    {
+      return this.http.get("http://localhost:51680/GetManagers");
+    }
+
     getRents(): Observable<any>
     {
         return this.http.get("http://localhost:51680/api/Rents");

@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Service } from '../Models/service.model';
 import { debug } from 'util';
+import { User } from 'src/app/Models/user.model';
 
 @Injectable()
 export class ServiceService {
@@ -81,5 +82,14 @@ export class ServiceService {
       data=>{},
       err=>{}
     );
+  }
+
+  confirm(user:User):void
+  {
+    this.http.post("http://localhost:51680/ConfirmUser",user)
+    .subscribe(
+      (data)=>{debugger},
+      (err)=>{debugger}
+    )
   }
 }

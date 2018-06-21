@@ -1,0 +1,29 @@
+<p>
+    Unconfirmed users:
+  </p>
+  <table border="0">
+    <div *ngFor="let user of users">
+      <tr>
+        <td>User's email: </td>
+      <td>{{user.Email}}</td>
+      <td>
+        <button (click)="confirm(user)">Confirm user</button>
+      </td>
+      </tr>
+    </div>
+  </table>
+
+  <p>
+      Managers:
+    </p>
+    <table border="0">
+      <div *ngFor="let manager of managers">
+        <tr>
+          <td>Manager's email: </td>
+        <td>{{manager.Email}}</td>
+        <td>
+          <button (click)="ban(user)">Ban manager</button>
+        </td>
+        </tr>
+      </div>
+    </table>

@@ -49,6 +49,11 @@ export class ProfileComponent implements OnInit {
     this.getUser();
   }
 
+  confirmedUser()
+  {
+    this.user.Activated;    // vraca da li ga je admin odobrio
+  }
+
   toggle():void
   {
     this.clicked=!this.clicked;
