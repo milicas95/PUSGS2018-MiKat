@@ -43,6 +43,8 @@ export class VehicleDetailsComponent implements OnInit {
     this.vehicle.Year = model.Year;
     if(model.PricePerHour != "")
     this.vehicle.PricePerHour = model.PricePerHour;
+    if(model.Unavailable != false)
+    this.vehicle.Unavailable = true;
     this.serviceService.updateVehicle(this.vehicle);
   }
 }

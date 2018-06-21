@@ -67,7 +67,7 @@ export class ServiceComponent implements OnInit
 
   callGet()
   {
-    this.serviceService.getMethod()
+    this.serviceService.getActiveServices()
     .subscribe(
       data=> {
         debugger

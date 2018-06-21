@@ -22,6 +22,11 @@ export class ServiceService {
     //debugger
     return this.http.get('http://localhost:51680/api/services');
   }
+  getActiveServices():Observable<any>
+  {
+    //debugger
+    return this.http.get('http://localhost:51680/api/services/getactive');
+  }
 
   postMethod(newMember):void
   {

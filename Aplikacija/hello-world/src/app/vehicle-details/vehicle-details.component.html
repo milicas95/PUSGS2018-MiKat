@@ -21,6 +21,10 @@
                         <label for="PricePerHour">Price per hour:</label>
                         <input type="text" name="PricePerHour" placeholder="{{vehicle.PricePerHour}}" ngModel>
                     </div>
+                    <div>
+                        <label for="Unavailable">Unavailable</label>
+                        <input type="checkbox" name="Unavailable" ngModel>
+                    </div>
                     <input type="submit" value="Update vehicle">
             </form>
             <button class="button1" (click)="deleteVehicle()">Delete vehicle</button>

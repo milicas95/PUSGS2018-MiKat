@@ -67,7 +67,7 @@ export class ReservationComponent implements OnInit {
 
   callGet()
   {
-    this.serviceService.getMethod()
+    this.serviceService.getActiveServices()
     .subscribe(
       data=> {
         this.serviceList=data;
