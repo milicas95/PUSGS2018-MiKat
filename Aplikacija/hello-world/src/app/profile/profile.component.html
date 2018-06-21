@@ -1,4 +1,4 @@
-    <div *ngIf="!confirmedUser()">
+    <div *ngIf="!confirmedUser">
       <h3>Your profile is not confirmed by admin.</h3>
       <h3>Please, complete your profile by adding photo of personal document.</h3>
     </div>
@@ -25,11 +25,11 @@
         <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload document</button> 
       </form>
 
-      <div>
+      <!-- <div>
         <li *ngFor="let rent of rentsList">
           <p>Your reservations</p>
-              <p>Vehicle:  {{rent.Vehicle.Model}}</p>
-              <p>Begin branch: {{rent.BeginBranch}} </p>
+              <!-- <p>Vehicle:  {{rent.Vehicle.Id}}</p> -->
+              <!-- <p>Begin branch: {{rent.BeginBranch}} </p>
               <p>End branch:  {{rent.EndBranch}}</p>
               <p>Start date:  {{rent.Start}}</p>
               <p>End date: {{rent.End}}</p>
@@ -57,6 +57,6 @@
             </form>
           </div>
         </li>
-      </div>
+      </div> -->
 
       

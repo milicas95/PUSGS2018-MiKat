@@ -13,6 +13,7 @@ import { ServiceService } from 'src/app/Services/service.service';
 export class AdminUsersComponent implements OnInit {
   private users:User[];
   private managers:User[];
+
   constructor(private service:ProfileService,private router:Router,private serviceService:ServiceService) { }
 
   ngOnInit() {
