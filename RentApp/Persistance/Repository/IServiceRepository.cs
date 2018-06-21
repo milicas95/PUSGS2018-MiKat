@@ -18,5 +18,6 @@ namespace RentApp.Persistance.Repository
         void DeleteBranches(int serviceId);
         void DeleteComments(int serviceId);
         IEnumerable<Service> GetActiveServices();
+        IEnumerable<Service> GetDeactiveServices();
     }
 }

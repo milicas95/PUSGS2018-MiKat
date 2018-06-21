@@ -14,6 +14,21 @@
   </table>
 
   <p>
+      Unactivated services:
+    </p>
+    <table border="0">
+      <div *ngFor="let service of services">
+        <tr>
+          <td>Service's name: </td>
+        <td>{{service.Name}}</td>
+        <td>
+          <button (click)="approve(service)">Approve service</button>
+        </td>
+        </tr>
+      </div>
+    </table>
+
+  <p>
       Managers:
     </p>
     <table border="0">

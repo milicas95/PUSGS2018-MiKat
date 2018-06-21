@@ -1,5 +1,6 @@
 import { Vehicle } from '../Models/vehicle.model';
 import { Branch } from '../Models/branch.model';
+import { Comment } from '@angular/compiler';
 
 export class Service
 {
@@ -11,5 +12,5 @@ export class Service
     Activated:boolean;
     Vehicles:Vehicle[];
     Branches:Branch[];
-    // dodati listu komentara
+    Comments:Comment[];
 }

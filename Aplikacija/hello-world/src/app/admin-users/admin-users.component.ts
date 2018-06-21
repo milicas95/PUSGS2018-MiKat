@@ -3,6 +3,7 @@ import { User } from 'src/app/Models/user.model';
 import { ProfileService } from '../Services/profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServiceService } from 'src/app/Services/service.service';
+import { Service } from 'src/app/Models/service.model';
 
 @Component({
   selector: 'app-admin-users',
@@ -13,14 +14,17 @@ import { ServiceService } from 'src/app/Services/service.service';
 export class AdminUsersComponent implements OnInit {
   private users:User[];
   private managers:User[];
+  private services:Service[];
 
   constructor(private service:ProfileService,private router:Router,private serviceService:ServiceService) { }
 
   ngOnInit() {
     this.users=[];
     this.managers=[];
+    this.services=[];
     this.getUsers();
     this.getManagers();
+    this.getServers();
   }
 
   getUsers()
@@ -52,6 +56,20 @@ export class AdminUsersComponent implements OnInit {
     )
   }
 
+  getServers()
+  {
+    this.serviceService.getServers()
+    .subscribe(
+      data=>
+      {
+        this.services=data;
+      },
+      error=>{
+        console.log(error);
+      }
+    )
+  }
+
   confirm(user:User)
   {
     this.serviceService.confirm(user);
@@ -60,6 +78,13 @@ export class AdminUsersComponent implements OnInit {
 
   ban(user:User)
   {
+    this.serviceService.ban(user);
+    console.log("Manager has been banned");
+  }
 
+  approve(service:Service)
+  {
+    this.serviceService.approve(service);
+    console.log("Service has been approved");
   }
 }

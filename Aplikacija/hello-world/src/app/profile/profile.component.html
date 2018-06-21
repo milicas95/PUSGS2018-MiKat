@@ -24,39 +24,4 @@
         <input type="file" multiple name="PersonalDocument" ng2FileSelect [uploader]="uploader" enctype="multipart/form-data"/>
         <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload document</button> 
       </form>
-
-      <!-- <div>
-        <li *ngFor="let rent of rentsList">
-          <p>Your reservations</p>
-              <!-- <p>Vehicle:  {{rent.Vehicle.Id}}</p> -->
-              <!-- <p>Begin branch: {{rent.BeginBranch}} </p>
-              <p>End branch:  {{rent.EndBranch}}</p>
-              <p>Start date:  {{rent.Start}}</p>
-              <p>End date: {{rent.End}}</p>
-          <div *ngIf="rent.Used">
-            <h3>Your reservation has ended!</h3>
-            <h3>We would appreciate if you rate our service and leave a comment.</h3>
-            <form #form="ngForm" (ngSubmit)="sendComment()">
-              <div class="rating form-group">
-                <input id="star5" type="radio" value="5" class="radio-btn-hide" />
-                <label for="star5">☆</label>
-                <input id="star4" type="radio" value="4" class="radio-btn-hide" />
-                <label for="star4">☆</label>
-                <input id="star3" type="radio" value="3" class="radio-btn-hide" />
-                <label for="star3">☆</label>
-                <input id="star2" type="radio" value="2" class="radio-btn-hide" />
-                <label for="star2">☆</label>
-                <input id="star1" type="radio" value="1" class="radio-btn-hide" />
-                <label for="star1">☆</label>
-              </div>
-              <div>
-                <label for="Description">Your comment</label>
-                <input type="text" name="Description" [value]="Description">
-              </div>
-              <button>Send</button>
-            </form>
-          </div>
-        </li>
-      </div> -->
-
       

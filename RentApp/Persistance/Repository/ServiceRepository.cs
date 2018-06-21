@@ -68,5 +68,10 @@ namespace RentApp.Persistance.Repository
         {
             return Context.Services.Where(x => x.Activated == true).ToList();
         }
+
+        public IEnumerable<Service> GetDeactiveServices()
+        {
+            return Context.Services.Where(x => x.Activated == false).ToList();
+        }
     }
 }

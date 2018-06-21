@@ -10,6 +10,9 @@ import { Service } from '../Models/service.model';
 import { ServiceService } from '../Services/service.service';
 import { Reservation } from '../Models/reservation.model';
 import { NgForm } from '@angular/forms';
+import { Comment } from 'src/app/Models/comment.model';
+import { User } from 'src/app/Models/user.model';
+import { ProfileService } from '../Services/profile.service';
 
 @Component({
   selector: 'app-reservation',
@@ -23,7 +26,8 @@ import { NgForm } from '@angular/forms';
       multi: true
     },
     ReservationService,
-    ServiceService
+    ServiceService,
+    ProfileService
   ]
 })
 export class ReservationComponent implements OnInit {
@@ -36,8 +40,9 @@ export class ReservationComponent implements OnInit {
   private endBranch:Branch;
   private date:number;
   private isVisible=true;
+  private buttonDisabled=true;
 
-  constructor(private service:ReservationService,private serviceService:ServiceService) 
+  constructor(private service:ReservationService,private serviceService:ServiceService,private profileService:ProfileService) 
   { 
     this.date = Date.now();
   }
@@ -52,6 +57,12 @@ export class ReservationComponent implements OnInit {
   toggle(vehicle:Vehicle):void {
     this.isVisible = !this.isVisible;
     this.rentVehicle=vehicle;
+  }
+
+  addComment()
+  {
+    this.buttonDisabled=!this.buttonDisabled;
+
   }
 
   callGet()
@@ -70,7 +81,7 @@ export class ReservationComponent implements OnInit {
 
   onSubmit(res:Reservation,form:NgForm)
   {
-    debugger
+    //debugger
     res.Vehicle=this.rentVehicle;
     this.service.Reserve(res);
     form.reset();
@@ -90,6 +101,20 @@ export class ReservationComponent implements OnInit {
       {
   
       }
+    )
+  }
+
+  giveComment(com:any,form:NgForm)
+  {
+    this.profileService.getUser()
+    .subscribe(
+      data=>
+      { 
+        com.User=data;
+        com.Service=this.selectedService;
+        this.serviceService.giveComment(com);
+      },
+      err=>{ }
     )
   }
 }

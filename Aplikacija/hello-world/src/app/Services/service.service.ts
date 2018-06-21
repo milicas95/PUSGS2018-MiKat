@@ -88,6 +88,38 @@ export class ServiceService {
   {
     this.http.post("http://localhost:51680/ConfirmUser",user)
     .subscribe(
+      data=>{},
+      err=>{}
+    )
+  }
+
+  ban(user:User):void
+  {
+    this.http.post("http://localhost:51680/BanManager",user)
+    .subscribe(
+      data=>{},
+      err=>{}
+    )
+  }
+
+  approve(service:Service):void
+  {
+    this.http.post("http://localhost:51680/ApproveService",service)
+    .subscribe(
+      data=>{},
+      err=>{}
+    )
+  }
+
+  getServers():Observable<any>
+  {
+    return this.http.get("http://localhost:51680/GetServices");
+  }
+
+  giveComment(com:Comment)
+  {
+    this.http.post("http://localhost:51680/GiveComment",com)
+    .subscribe(
       (data)=>{debugger},
       (err)=>{debugger}
     )
