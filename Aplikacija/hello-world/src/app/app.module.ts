@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'password', component:PasswordComponent},
   { path: 'home', component:HomeComponent},
   { path: 'client', component:ClientComponent},
-  { path: 'admin', component:AdminUsersComponent}
+  { path: 'admin', component:AdminUsersComponent},
   { path: 'client', component:ClientComponent},
   { path: 'manager', component:ManageServiceComponent}
 ];
@@ -67,7 +67,7 @@ const routes: Routes = [
     FileSelectDirective,
     CommentComponent,
     AdminComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
     FileSelectDirective,
     ManageServiceComponent,
     BranchDetailsComponent

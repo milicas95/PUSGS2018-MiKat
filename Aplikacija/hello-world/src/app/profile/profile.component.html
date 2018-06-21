@@ -24,4 +24,13 @@
         <input type="file" multiple name="PersonalDocument" ng2FileSelect [uploader]="uploader" enctype="multipart/form-data"/>
         <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">Upload document</button> 
       </form>
+      <div *ngIf="photo">
+        <img src="http://localhost:51680/{{user.PersonalDocument}}" >
+      </div>
+
+     <!-- <div>
+        <li *ngFor="let rent of rentsList">
+          <span class="badge">{{rent.ReservationID}}</span>
+        </li>
+      </div> -->
       

@@ -3,10 +3,7 @@
           <div *ngFor="let service of serviceList" [class.selected]="service === selectedService"
             (click)="onSelect(service)">
                 <article class="card" >
-                    <!-- <img class="card-img-top" src="{{service.Logo}}" alt="Card image cap"> -->
-                    <picture class="thumbnail">
-                        <img class="category__01" src="https://abbeyjfitzgerald.com/wp-content/uploads/2018/01/cloud.svg" alt="" />
-                      </picture>
+                        <img class="card-img-top" height="200" width="200"src="http://localhost:51680/{{service.Logo}}" alt="Card image cap">
                     <div class="card-content">
                         <p class="category category__01">{{service.Name}}</p> 
                     </div>

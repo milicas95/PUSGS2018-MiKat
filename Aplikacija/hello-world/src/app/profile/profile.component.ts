@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
   private rentsList:Reservation[];
   public user:User;
   private confirmedUser:boolean;
+  private photo:boolean=false;
   
   public uploader:FileUploader;
   public url:string;
@@ -61,6 +62,7 @@ export class ProfileComponent implements OnInit {
     .subscribe(
       data=>
       {
+        this.photo=!this.photo;
         this.user = data;
         this.confirmedUser=this.user.Activated;        
       },

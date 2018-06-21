@@ -70,6 +70,7 @@ export class ServiceComponent implements OnInit
     this.serviceService.getMethod()
     .subscribe(
       data=> {
+        debugger
         this.serviceList=data;
       },
       error=>
